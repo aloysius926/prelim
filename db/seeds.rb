@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+["Micro (Major)","Macro"].each { |x| Subject.create(:name => x)}
+["Prelim","Midterm","Final"].each { |x| Source.create(:source => x)}
+["Tim Kehoe","Larry Jones" ].each {|x| Professor.create(:name => x)}
+["Ramsey","Search"].each {|x| Tag.create(:tag => x)}
+["Fall","Spring"].each {|x| Term.create(:term => x)}
