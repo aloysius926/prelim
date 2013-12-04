@@ -1,0 +1,25 @@
+%h1 All Questions
+
+%table#questions
+  %thead
+    %tr
+      %th Subject
+      %th Source
+      %th Year
+      %th Professor
+      %th Number
+      %th Term
+      %th Mini
+  %tbody
+    - @questions.each do |question|
+      %tr
+        %td= question.subject.name
+        %td= question.source.source
+        %td= question.year
+        %td= question.professor.name
+        %td= question.number
+        %td= question.term.term
+        %td= question.mini
+   
+
+= link_to "Add new question", new_question_path
