@@ -36,12 +36,5 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
 gem 'haml'
+gem "paperclip", "~> 3.0"
