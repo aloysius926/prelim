@@ -3,8 +3,8 @@ class QuestionsController < ApplicationController
     @questions=Question.all
   end
   def create
-    @question=Question.create!(question_params)
-    flash[:notice]="Question successfully created."
+    @question = Question.new(question_params)
+    @question.save
     redirect_to questions_path
   end
   def new

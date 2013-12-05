@@ -1,29 +1,29 @@
 %h1 Create New Question
 
-= form_tag questions_path, :html => { :multipart => true } do
-  = label :question, :subject, "Subject:"
-  = collection_select :question, :subject_id, Subject.all, :id, :name, include_blank: true
+= form_for :question,url: questions_path, :html => { :multipart => true } do |f|
+  = f.label :subject
+  = f.collection_select :subject_id, Subject.all, :id, :name, include_blank: true
 
-  = label :question, :source, "Source:"
-  = collection_select :question, :source_id, Source.all, :id, :source, include_blank: true
+  = f.label :source
+  = f.collection_select :source_id, Source.all, :id, :source, include_blank: true
 
-  = label :question, :year, "Year:"
-  = select :question, :year, (1990...2013)
+  = f.label :year
+  = f.select :year, (1990...2013)
 
-  = label :question, :professor, "Professor:"
-  = collection_select :question, :professor_id, Professor.all, :id, :name, include_blank: true
+  = f.label :professor
+  = f.collection_select  :professor_id, Professor.all, :id, :name, include_blank: true
 
-  = label :question, :number, "Number:"
-  = text_field :question, :number 
+  = f.label  :number
+  = f.text_field  :number 
 
-  = label :question, :term, "Term:"
-  = collection_select :question, :term_id, Term.all, :id, :term, include_blank: true
+  = f.label  :term
+  = f.collection_select :term_id, Term.all, :id, :term, include_blank: true
 
-  = label :question, :mini, "Mini:"
-  = number_field :question, :mini
+  = f.label :mini
+  = f.number_field  :mini
 
-  = label :question, :file, "File:"
-  = file_field :question, :pdf
+  = f.label  :file
+  = f.file_field  :pdf
 
 
   = submit_tag 'Save Changes'
