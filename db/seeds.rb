@@ -11,3 +11,4 @@
 ["Tim Kehoe","Larry Jones" ].each {|x| Professor.create(:name => x)}
 ["Ramsey","Search"].each {|x| Tag.create(:tag => x)}
 ["Fall","Spring"].each {|x| Term.create(:term => x)}
+User.create(name: "Dominic Smith", email: "smit6226@umn.edu", password: "saasbook", password_confirmation: "saasbook")
