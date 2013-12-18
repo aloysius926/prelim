@@ -21,6 +21,7 @@
         %td= question.number
         %td= question.term.term
         %td= question.mini
-        %td= %a {:href=>question.pdf.url}
+        %td
+          = link_to("Download",question.pdf.url)
 
 = link_to "Add new question", new_question_path
