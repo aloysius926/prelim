@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131218165945) do
+ActiveRecord::Schema.define(version: 20131218232334) do
 
   create_table "professors", force: true do |t|
     t.string   "name"
@@ -21,11 +21,8 @@ ActiveRecord::Schema.define(version: 20131218165945) do
 
   create_table "questions", force: true do |t|
     t.integer  "subject_id"
-    t.integer  "term_id"
     t.integer  "source_id"
     t.integer  "professor_id"
-    t.integer  "year"
-    t.string   "number"
     t.integer  "mini"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -38,7 +35,18 @@ ActiveRecord::Schema.define(version: 20131218165945) do
   add_index "questions", ["professor_id"], name: "index_questions_on_professor_id"
   add_index "questions", ["source_id"], name: "index_questions_on_source_id"
   add_index "questions", ["subject_id"], name: "index_questions_on_subject_id"
-  add_index "questions", ["term_id"], name: "index_questions_on_term_id"
+
+  create_table "sittings", force: true do |t|
+    t.integer  "term_id"
+    t.integer  "year"
+    t.string   "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "question_id"
+  end
+
+  add_index "sittings", ["question_id"], name: "index_sittings_on_question_id"
+  add_index "sittings", ["term_id"], name: "index_sittings_on_term_id"
 
   create_table "sources", force: true do |t|
     t.text     "source"

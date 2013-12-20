@@ -1,0 +1,10 @@
+= form.fields_for :sitting do |e|
+  .field
+    = e.label :year
+    = e.select :year, (1990...2013)
+  .field
+    = e.label  :term
+    = e.collection_select :term_id, Term.all, :id, :term, include_blank: true
+  .field
+    = e.label  :number
+    = e.text_field  :number 

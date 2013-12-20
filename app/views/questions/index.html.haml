@@ -5,22 +5,21 @@
     %tr
       %th Subject
       %th Source
-      %th Year
       %th Professor
-      %th Number
-      %th Term
       %th Mini
+      %th Dates
       %th PDF
   %tbody
     - @questions.each do |question|
       %tr
         %td= question.subject.name
         %td= question.source.source
-        %td= question.year
         %td= question.professor.name
-        %td= question.number
-        %td= question.term.term
         %td= question.mini
+        %td
+          - question.sittings.each do | sitting |
+            = sitting.year
+            
         %td
           = link_to("Download",question.pdf.url)
 
