@@ -15,6 +15,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'thin'
 end
 
 group :test do
