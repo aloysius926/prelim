@@ -16,11 +16,13 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'thin'
+  gem 'factory_girl_rails'
 end
 
 group :test do
-  gem 'cucumber-rails'
-  
+  gem 'cucumber-rails', :require => false
+  gem  'cucumber-rails-training-wheels'
+  gem 'faker'
 end
 
 group :production do
