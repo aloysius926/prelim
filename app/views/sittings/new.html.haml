@@ -1,0 +1,12 @@
+= form_tag question_sittings_path(@question) do 
+  .field
+    %label Year: 
+    = select_tag 'sitting[year]', options_for_select(2000...2013)
+  .field
+    %label  Term: 
+    = collection_select :sitting, :term_id, Term.all, :id, :term, include_blank: true
+  .field
+    %label  Number: 
+    = text_field  :sitting, :number
+  %p
+    = submit_tag 'Save Sitting'

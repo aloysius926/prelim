@@ -1,4 +1,4 @@
-= f.fields_for "question[sitting_attributes]", @sitting do |e|
+= form.fields_for :sitting do |e|
   .field
     = e.label :year
     = e.select :year, (1990...2013)

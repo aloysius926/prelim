@@ -9,6 +9,7 @@
       %th Mini
       %th Dates
       %th PDF
+      %th More Info
   %tbody
     - @questions.each do |question|
       %tr
@@ -18,10 +19,10 @@
         %td= question.mini
         %td
           - question.sittings.each do | sitting |
-            = sitting.year
-            
+            = sitting.print_sitting
         %td
           = link_to("Download",question.pdf.url)
+        %td= link_to "More info", question_path(question)
 
 = link_to "Add new question", new_question_path
 = link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" 
