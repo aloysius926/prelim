@@ -1,28 +1,29 @@
-%h1 All Questions
+.center.hero-unit
+  %h1 All Questions
 
-%table#questions
-  %thead
-    %tr
-      %th Subject
-      %th Source
-      %th Professor
-      %th Mini
-      %th Dates
-      %th PDF
-      %th More Info
-  %tbody
-    - @questions.each do |question|
+  %table.table#questions
+    %thead
       %tr
-        %td= question.subject.name
-        %td= question.source.source
-        %td= question.professor.name
-        %td= question.mini
-        %td
-          - question.sittings.each do | sitting |
-            = sitting.print_sitting
-        %td
-          = link_to("Download",question.pdf.url)
-        %td= link_to "More info", question_path(question)
+        %th Subject
+        %th Source
+        %th Professor
+        %th Mini
+        %th Dates
+        %th Question PDF
+        %th More Info
+    %tbody
+      - @questions.each do |question|
+        %tr
+          %td= question.subject.name
+          %td= question.source.source
+          %td= question.professor.name
+          %td= question.mini
+          %td
+            - question.sittings.each do | sitting |
+              = sitting.print_sitting
+          %td
+            = link_to("Download",question.pdf.url)
+          %td= link_to "More info", question_path(question)
 
-= link_to "Add new question", new_question_path
-= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" 
+  = link_to "Add new question", new_question_path
+= link_to "Sign up now!", signup_path
