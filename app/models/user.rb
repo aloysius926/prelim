@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX =  /\A[\w+\-.]+@umn.edu\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
+  has_many :question_ratings
   has_secure_password
   before_create :create_remember_token
   
