@@ -25,3 +25,20 @@
 = link_to 'Add Question Rating', new_question_question_rating_path(@question)
 
 %h2 Answers
+
+%table.table 
+  %thead
+    %tr
+      %th Overall 
+      %th Answer PDF
+  %tbody
+    - @question.answers.each do |answer|
+      %tr
+        %td= answer.rating.overall
+        %td= link_to("Download",answer.pdf.url)
+        
+= form_for([@question, @question.answers.build]) do |f|
+  = f.label  :file
+  = f.file_field  :pdf
+  
+  = f.submit
