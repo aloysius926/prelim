@@ -1,5 +1,27 @@
-%h1 Question Summary
+%h1 Question
 
-
-
+%h3 Dates Asked
+- @question.sittings.each do | sitting |
+  = sitting.print_sitting
+%p
 = link_to 'Add Sitting', new_question_sitting_path(@question)
+
+%h3 Overal Question Rating
+
+= form_for([@question, @question.question_ratings.build]) do |f|
+  = f.label :overall
+  = f.select :overall, (1...5)
+  
+  = f.label :uniqueness
+  = f.select :uniqueness, (1...5)
+  
+  = f.label :difficulty
+  = f.select :difficulty, (1...5)
+  
+  = f.label :comment
+  = f.text_field :comment
+  
+  = f.submit
+= link_to 'Add Question Rating', new_question_question_rating_path(@question)
+
+%h2 Answers
