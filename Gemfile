@@ -28,6 +28,8 @@ end
 group :production do
   gem 'pg'
   gem 'aws-sdk'
+  gem 'rails_serve_static_assets'
+  gem 'rails_12factor'
 end
 
 # Gems used only for assets and not required
