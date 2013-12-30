@@ -34,7 +34,7 @@
   %tbody
     - @question.answers.each do |answer|
       %tr
-        %td= answer.rating.overall
+        %td= answer.answer_ratings
         %td= link_to("Download",answer.pdf.url)
         
 = form_for([@question, @question.answers.build]) do |f|
