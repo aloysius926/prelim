@@ -9,4 +9,8 @@ class Question < ActiveRecord::Base
   accepts_nested_attributes_for :sittings
   has_attached_file :pdf
   
+  def total_answers
+    self.answers.size
+  end
+  
 end

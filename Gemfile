@@ -42,7 +42,7 @@ group :assets do
   gem 'coffee-rails', "~> 4.0.0"
   gem 'uglifier'
 end
-
+gem 'simple_form'
 gem 'jquery-rails'
 gem 'haml'
 gem "paperclip", "~> 3.0"

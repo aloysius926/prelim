@@ -1,44 +1,45 @@
-%h1 Question
+.hero-unit
+  %h1 Question
 
-%h3 Dates Asked
-- @question.sittings.each do | sitting |
-  = sitting.print_sitting
-%p
-= link_to 'Add Sitting', new_question_sitting_path(@question)
+  %h3 Dates Asked
+  - @question.sittings.each do | sitting |
+    = sitting.print_sitting
+  = link_to 'Add Sitting', new_question_sitting_path(@question)
 
-%h3 Overal Question Rating
+  %h3 Overal Question Rating
 
-= form_for([@question, @question.question_ratings.build]) do |f|
-  = f.label :overall
-  = f.select :overall, (1...5)
-  
-  = f.label :uniqueness
-  = f.select :uniqueness, (1...5)
-  
-  = f.label :difficulty
-  = f.select :difficulty, (1...5)
-  
-  = f.label :comment
-  = f.text_field :comment
-  
-  = f.submit
-= link_to 'Add Question Rating', new_question_question_rating_path(@question)
+  = form_for([@question, @question.question_ratings.build]) do |f|
+    = f.label :overall
+    = f.select :overall, (1...5)
+    
+    = f.label :uniqueness
+    = f.select :uniqueness, (1...5)
+    
+    = f.label :difficulty
+    = f.select :difficulty, (1...5)
+    
+    = f.label :comment
+    = f.text_field :comment
+    
+    = f.submit
+  = link_to 'Add Question Rating', new_question_question_rating_path(@question)
 
-%h2 Answers
+  %h2 Answers
 
-%table.table 
-  %thead
-    %tr
-      %th Overall 
-      %th Answer PDF
-  %tbody
-    - @question.answers.each do |answer|
+  %table.table 
+    %thead
       %tr
-        %td= answer.answer_ratings
-        %td= link_to("Download",answer.pdf.url)
-        
-= form_for([@question, @question.answers.build]) do |f|
-  = f.label  :file
-  = f.file_field  :pdf
+        %th Overall 
+        %th Answer PDF
+        %th Review Answer
+    %tbody
+      - @question.answers.each do |answer|
+        %tr
+          %td= answer.overall_average
+          %td= link_to("Download",answer.pdf.url)
+          %td= answer.user.id
+  = form_for([@question, @question.answers.build]) do |f|
+    = f.label  :file
+    = f.file_field  :pdf
   
-  = f.submit
+    = f.submit

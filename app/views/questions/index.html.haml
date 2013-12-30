@@ -9,6 +9,7 @@
         %th Professor
         %th Mini
         %th Dates
+        %th # Answers
         %th Question PDF
         %th More Info
     %tbody
@@ -21,9 +22,10 @@
           %td
             - question.sittings.each do | sitting |
               = sitting.print_sitting
+          %td= question.total_answers
           %td
             = link_to("Download",question.pdf.url)
           %td= link_to "More info", question_path(question)
 
   = link_to "Add new question", new_question_path
-= link_to "Sign up now!", signup_path
+  = link_to "Sign up now!", signup_path

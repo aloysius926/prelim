@@ -12,4 +12,5 @@ Prelims::Application.routes.draw do
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  #get 'questions/:question_id/answers/:id/answer_ratings/new', :to => 'answer_ratings#new', :as => :answer_id 
 end

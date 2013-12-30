@@ -1,21 +1,22 @@
-%h1 Create New Question
+.hero-unit
+  %h1 Create New Question
 
-= form_for :question, url: questions_path, :html => { :multipart => true } do |f|
-  = f.label :subject
-  = f.collection_select :subject_id, Subject.all, :id, :name, include_blank: true
-  %p
-  = f.label :source
-  = f.collection_select :source_id, Source.all, :id, :source, include_blank: true
-  %p
-  = f.label :professor
-  = f.collection_select  :professor_id, Professor.all, :id, :name, include_blank: true
-  %p
-  = f.label :mini
-  = f.number_field  :mini
-  %p
- 
-  = f.label  :file
-  = f.file_field  :pdf
+  = form_for :question, url: questions_path, :html => { :multipart => true } do |f|
+    = f.label :subject
+    = f.collection_select :subject_id, Subject.all, :id, :name, include_blank: true
+    %p
+    = f.label :source
+    = f.collection_select :source_id, Source.all, :id, :source, include_blank: true
+    %p
+    = f.label :professor
+    = f.collection_select  :professor_id, Professor.all, :id, :name, include_blank: true
+    %p
+    = f.label :mini
+    = f.number_field  :mini
+    %p
+  
+    = f.label  :file
+    = f.file_field  :pdf
 
-  %p
-  = submit_tag 'Save Changes'
+    %p
+    = submit_tag 'Save Changes'
