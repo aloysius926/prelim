@@ -30,6 +30,8 @@ group :production do
   gem 'aws-sdk'
   gem 'rails_serve_static_assets'
   gem 'rails_12factor'
+  gem 'unicorn'
+  
 end
 
 # Gems used only for assets and not required
