@@ -1,14 +1,15 @@
-%h1 Sign in
+.hero-unit
+  %h3 Sign in
 
-= form_for(:session, url: sessions_path) do |f|
-  = f.label :email
-  = f.text_field :email
+  = form_for(:session, url: sessions_path) do |f|
+    = f.label :email
+    = f.text_field :email
 
-  = f.label :password
-  = f.password_field :password
+    = f.label :password
+    = f.password_field :password
 
-  = f.submit "Sign In"
+    = f.submit "Sign In"
 
 
-New User? 
-= link_to "Sign up now", signup_path
+  New User? 
+  = link_to "Sign up now", signup_path

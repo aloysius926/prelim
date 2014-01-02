@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :question_ratings
   has_many :answer_ratings
   has_many :answers
+  has_many :finished_questions
   has_secure_password
   before_create :create_remember_token
   

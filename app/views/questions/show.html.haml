@@ -7,21 +7,8 @@
   = link_to 'Add Sitting', new_question_sitting_path(@question)
 
   %h3 Overal Question Rating
-
-  = form_for([@question, @question.question_ratings.build]) do |f|
-    = f.label :overall
-    = f.select :overall, (1...5)
-    
-    = f.label :uniqueness
-    = f.select :uniqueness, (1...5)
-    
-    = f.label :difficulty
-    = f.select :difficulty, (1...5)
-    
-    = f.label :comment
-    = f.text_field :comment
-    
-    = f.submit
+  = render 'question_ratings/table'
+  = render 'question_ratings/form' 
   = link_to 'Add Question Rating', new_question_question_rating_path(@question)
 
   %h2 Answers

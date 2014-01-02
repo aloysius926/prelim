@@ -4,11 +4,14 @@
   %table.table#questions
     %thead
       %tr
-        %th Subject
+        %th= link_to 'Subject', questions_path(:sort => 'subject')
         %th Source
         %th Professor
         %th Mini
         %th Dates
+        %th Overall Rating
+        %th Difficulty Rating
+        %th Uniqueness Rating
         %th # Answers
         %th Question PDF
         %th More Info
@@ -22,6 +25,9 @@
           %td
             - question.sittings.each do | sitting |
               = sitting.print_sitting
+          %td= question.overall
+          %td= question.difficulty
+          %td= question.uniqueness
           %td= question.total_answers
           %td
             = link_to("Download",question.pdf.url)

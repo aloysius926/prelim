@@ -1,6 +1,6 @@
  <header class="navbar navbar-fixed-top">
     <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
+        <div class="alert alert-error nav pull-left"><%= key %>"><%= value %></div>
     <% end %>
     <div class="navbar-inner">
       <div class="container">

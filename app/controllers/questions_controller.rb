@@ -1,6 +1,15 @@
 class QuestionsController < ApplicationController
   def index
+    sort = params[:sort] || session[:sort]
+    ordering = {:order => 'subject' }
+      if params[:sort] != session[:sort]
+      session[:sort] = sort
+      flash.keep
+      redirect_to :sort => sort and return
+    end
+
     @questions=Question.includes(:sittings).all
+    @questions.sort_by! {|u| u.subject.name}
   end
   def create
     Question.create(question_params)

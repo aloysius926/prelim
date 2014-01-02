@@ -1,0 +1,21 @@
+%table.table
+  %thead
+    %tr
+      %th Rating
+      %th Overall
+      %th Uniqueness
+      %th Difficulty
+      %th Comment
+  %tbody
+    %tr
+      %td Average
+      %td= @question.overall
+      %td= @question.uniqueness
+      %td= @question.difficulty
+    - @question.question_ratings.each do | rating |
+      %tr
+        %td= rating.user_id
+        %td= rating.overall
+        %td= rating.uniqueness
+        %td= rating.difficulty
+        %td= rating.comment
