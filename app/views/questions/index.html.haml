@@ -9,10 +9,11 @@
         %th Professor
         %th Mini
         %th Dates
-        %th= link_to 'Overall Rating', questions_path(:sort => 'overall')
-        %th Difficulty Rating
-        %th Uniqueness Rating
+        %th= link_to 'Over', questions_path(:sort => 'overall')
+        %th Diff
+        %th Uniq
         %th # Answers
+        %th Finished
         %th Question PDF
         %th More Info
     %tbody
@@ -29,6 +30,7 @@
           %td= question.difficulty
           %td= question.uniqueness
           %td= question.total_answers
+          %td= question.finished?(current_user)
           %td
             = link_to("Download",question.pdf.url)
           %td= link_to "More info", question_path(question)

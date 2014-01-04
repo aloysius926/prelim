@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   def index
     sort = params[:sort] || session[:sort]
     ordering = {:order => 'subject' }
-      if params[:sort] != session[:sort]
+    if params[:sort] != session[:sort]
       session[:sort] = sort
       flash.keep
       redirect_to :sort => sort and return
@@ -20,11 +20,12 @@ class QuestionsController < ApplicationController
   end
   def show
     @question = Question.find(params[:id])
-    if FinishedQuestion.where(:question_id == params[:id]).where(:user_id == current_user.id)
-      @finished_question = FinishedQuestion.where(:question_id == params[:id]).where(:user_id == current_user.id)
+    if current_user.finished_questions.where("question_id = ?", params[:id]).size > 0
+      @finished_question = current_user.finished_questions.where("question_id = ?", params[:id]).first
     else
-      @finished_question = @question.finished_questions.build
+      @finished_question = FinishedQuestion.new
     end
+   # @finished_question =FinishedQuestion.first
   end
 end
 

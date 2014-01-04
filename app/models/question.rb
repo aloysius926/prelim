@@ -22,6 +22,11 @@ class Question < ActiveRecord::Base
   def difficulty
     QuestionRating.where(question_id: self.id).average(:difficulty)
   end
-    
+  
+  def finished?(current_user)
+    if self.finished_questions.where(user_id: current_user.id).exists?
+      'Y'
+    end
+  end
   
 end
