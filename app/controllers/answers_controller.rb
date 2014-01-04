@@ -7,6 +7,7 @@ class AnswersController < ApplicationController
     redirect_to question_path(@question)
   end
   def show
+    @answer = Answer.find(params[:id])
   end
                               
 end

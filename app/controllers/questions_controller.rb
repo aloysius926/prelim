@@ -20,6 +20,11 @@ class QuestionsController < ApplicationController
   end
   def show
     @question = Question.find(params[:id])
+    if FinishedQuestion.where(:question_id == params[:id]).where(:user_id == current_user.id)
+      @finished_question = FinishedQuestion.where(:question_id == params[:id]).where(:user_id == current_user.id)
+    else
+      @finished_question = @question.finished_questions.build
+    end
   end
 end
 

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :signed_in_user, only: [:new, :create]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: [:edit, :update, :show]
   
   def create
     @user = User.new(user_params)
@@ -10,7 +10,6 @@ class UsersController < ApplicationController
       redirect_to :root
     else
       render :action => :new
-     
     end
   end
   def new
@@ -21,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
-    def update
+  def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
        flash[:success] = "Profile updated"
@@ -31,13 +30,15 @@ class UsersController < ApplicationController
     end
   end
   
+  def show
+    @user = User.find(params[:id])
+  end
+  
   private
     def user_params
       params.require(:user).permit(:name,:email,:password,:password_confirmation)
     end
   
-
-    
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)

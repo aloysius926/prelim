@@ -1,6 +1,6 @@
 .hero-unit
   %h1 Question
-
+  = render 'finished_questions/form'
   %h3 Dates Asked
   - @question.sittings.each do | sitting |
     = sitting.print_sitting
@@ -17,14 +17,22 @@
     %thead
       %tr
         %th Overall 
+        %th Clarity
+        %th Detail
+        %th Correctness
         %th Answer PDF
+        %th User Name
         %th Review Answer
     %tbody
       - @question.answers.each do |answer|
         %tr
-          %td= answer.overall_average
+          %td= answer.overall
+          %td= answer.clarity
+          %td= answer.detail
+          %td= answer.correctness
           %td= link_to("Download",answer.pdf.url)
-          %td= answer.user.id
+          %td= answer.user.name
+          %td= link_to 'More info', question_answer_path(:id => answer.id, :question_id => answer.question.id)
   = form_for([@question, @question.answers.build]) do |f|
     = f.label  :file
     = f.file_field  :pdf

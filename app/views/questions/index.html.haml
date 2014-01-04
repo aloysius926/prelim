@@ -1,7 +1,7 @@
 .center.hero-unit
   %h1 All Questions
 
-  %table.table#questions
+  %table.table.table-condensed#questions
     %thead
       %tr
         %th= link_to 'Subject', questions_path(:sort => 'subject')
@@ -9,7 +9,7 @@
         %th Professor
         %th Mini
         %th Dates
-        %th Overall Rating
+        %th= link_to 'Overall Rating', questions_path(:sort => 'overall')
         %th Difficulty Rating
         %th Uniqueness Rating
         %th # Answers

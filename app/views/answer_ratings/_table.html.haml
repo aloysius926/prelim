@@ -1,0 +1,24 @@
+%table.table
+  %thead
+    %tr
+      %th User
+      %th Overall 
+      %th Clarity
+      %th Detail
+      %th Correctness
+      %th Comment
+  %tbody
+    %tr
+      %td Average
+      %td= @answer.overall
+      %td= @answer.clarity
+      %td= @answer.detail
+      %td= @answer.correctness
+    - @answer.answer_ratings.each do | rating |
+      %tr
+        %td= rating.user_id
+        %td= rating.overall
+        %td= rating.clarity
+        %td= rating.detail
+        %td= rating.correctness
+        %td= rating.comment

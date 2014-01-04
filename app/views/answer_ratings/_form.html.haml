@@ -1,0 +1,8 @@
+= simple_form_for([@answer, @answer.answer_ratings.build],:html => { :class => 'form-horizontal' } )  do |f|
+  = f.input :overall,collection: 1..5
+  = f.input :clarity, collection: 1..5 
+  = f.input :detail, collection: 1..5
+  = f.input :correctness, collection: 1..5
+  = f.input :comment
+    
+  = f.button :submit

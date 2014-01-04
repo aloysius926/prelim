@@ -1,0 +1,8 @@
+.hero-unit
+  %h1 Answer
+
+  
+  %h3 Answer Ratings
+  = render 'answer_ratings/table'
+  = render 'answer_ratings/form' 
+  = link_to 'Add Answer Rating', new_answer_answer_rating_path(@answer)

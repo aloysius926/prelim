@@ -3,9 +3,13 @@ Prelims::Application.routes.draw do
   resources :questions do 
     resources :sittings
     resources :question_ratings
+    resources :finished_questions
     resources :answers do
       resources :answer_ratings
     end
+  end
+  resources :answers do
+    resources :answer_ratings
   end
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
