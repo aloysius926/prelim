@@ -14,6 +14,7 @@
         %th= sortable "uniqueness", "Uniq"
         %th # Answers
         %th Finished
+        %th Tags
         %th Question PDF
         %th More Info
     %tbody
@@ -31,6 +32,9 @@
           %td= question.uniqueness
           %td= question.total_answers
           %td= question.finished?(current_user)
+          %td
+            - question.tags.each do |tag|
+              = tag.tag
           %td
             = link_to("Download",question.pdf.url)
           %td= link_to "More info", question_path(question)

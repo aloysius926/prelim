@@ -7,6 +7,8 @@ class Question < ActiveRecord::Base
   has_many :question_ratings
   has_many :answers
   has_many :finished_questions
+  has_many :tags, :through => :questiontags
+  has_many :questiontags
   accepts_nested_attributes_for :sittings
   has_attached_file :pdf
   before_post_process :rename_question

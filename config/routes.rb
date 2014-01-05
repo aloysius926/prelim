@@ -13,6 +13,7 @@ Prelims::Application.routes.draw do
     resources :answer_ratings
   end
   resources :users
+  resources :tags
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'

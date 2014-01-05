@@ -1,0 +1,7 @@
+.hero-unit
+  %h3 Add Tag
+  = form_for(@tag) do |f|
+    = f.label :tag
+    = f.text_field :tag
+ 
+    = f.submit

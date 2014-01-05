@@ -12,11 +12,20 @@ class QuestionsController < ApplicationController
     @current_user = current_user
   end
   def create
-    Question.create(question_params)
-    redirect_to questions_path
+    @question = Question.new(question_params)
+    params[:tags][:id].each do |tag|
+      if !tag.empty?
+	@question.questiontags.build(:tag_id => tag)
+      end
+    end
+    if @question.save
+      redirect_to questions_path
+    end
   end
   def new
     @question = Question.new
+    @all_tags = Tag.all.order(:tag)
+    @question_tag = @question.questiontags.build
   end
   def show
     @question = Question.find(params[:id])

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131231043142) do
+ActiveRecord::Schema.define(version: 20140105164507) do
 
   create_table "answer_ratings", force: true do |t|
     t.integer  "user_id"
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 20131231043142) do
   add_index "questions", ["professor_id"], name: "index_questions_on_professor_id"
   add_index "questions", ["source_id"], name: "index_questions_on_source_id"
   add_index "questions", ["subject_id"], name: "index_questions_on_subject_id"
+
+  create_table "questiontags", force: true do |t|
+    t.integer  "question_id"
+    t.integer  "tag_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questiontags", ["question_id"], name: "index_questiontags_on_question_id"
+  add_index "questiontags", ["tag_id"], name: "index_questiontags_on_tag_id"
 
   create_table "sittings", force: true do |t|
     t.integer  "term_id"
