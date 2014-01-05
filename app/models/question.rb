@@ -33,4 +33,14 @@ class Question < ActiveRecord::Base
     extension = File.extname(pdf_file_name).downcase
     self.pdf.instance_write :file_name, "#{self.subject.name}_#{self.sittings.first}#{extension}"
   end
+  def subj
+    self.subject.name
+  end
+  def prof
+    self.professor.name
+  end
+  def last_date
+    @sittings =self.sittings.sort_by! {|u| u.year}
+    @sittings.last
+  end
 end

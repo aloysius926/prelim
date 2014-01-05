@@ -1,19 +1,19 @@
 .center.hero-unit
   %h1 All Questions
-
+  %h3= @temp
   %table.table.table-condensed#questions
     %thead
       %tr
-        %th{:class => @subject_header}= link_to 'Subject', questions_path(:sort => 'subject')
+        %th= sortable "subj", "Subject"
         %th Source
-        %th Professor
+        %th= sortable "prof", "Professor"
         %th Mini
-        %th= link_to 'Dates', questions_path(:sort => 'date')
-        %th{:class => @overall_header}= link_to 'Over', questions_path(:sort => 'overall')
-        %th Diff
-        %th Uniq
+        %th= sortable "last_date", "Date"
+        %th= sortable "overall", "Over"
+        %th= sortable "uniqueness", "Diff"
+        %th= sortable "uniqueness", "Uniq"
         %th # Answers
-        %th{:class => @finished_header}= link_to 'Finished', questions_path(:sort => 'finished')
+        %th Finished
         %th Question PDF
         %th More Info
     %tbody

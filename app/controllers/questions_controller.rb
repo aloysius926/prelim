@@ -1,35 +1,15 @@
 class QuestionsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   def index
-    sort = params[:sort] || session[:sort]
     @questions=Question.includes(:sittings).all
-    
-    case sort
-    when 'subject'
-      ordering, @subject_header = {:order => :subject}, 'hilite'
-      @questions.sort_by! {|u| u.subject.name}
-    when 'overall'
-      ordering, @overall_header = {:order => :overall}, 'hilite'
-      @questions.sort_by! {|u| u.overall.to_s}
-      @questions.reverse!
-    when 'finished'
-      ordering, @finished_header = {:order => :finished}, 'hilite'
-      @questions.sort_by! {|u| u.finished?(current_user).to_s}
-    when 'date'
-      @questions.sort_by! {|u| 
-                           if u.sittings.first
-                             u.sittings.first.sort_sitting
-                          else
-                            ""
-                          end}
-      @questions.reverse!
-    end
-    if params[:sort] != session[:sort]
-      session[:sort] = sort
-      flash.keep
-      redirect_to :sort => sort and return
-    end
-
-    
+    @questions.sort_by! {|u| if u.send(sort_column)
+                           u.send(sort_column).to_s
+                        else
+                          ""
+                        end
+                         }
+    @questions.reverse! if sort_direction == "desc"
+    @current_user = current_user
   end
   def create
     Question.create(question_params)
@@ -54,3 +34,11 @@ def question_params
   params.require(:question).permit(:subject_id, :source_id, :professor_id,:mini,:pdf)
   #params.require(:question).permit!
 end
+ def sort_column
+    #Question.column_names.include?(params[:sort]) ? params[:sort] : "subject_id"
+                        params[:sort] || "subject_id"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
