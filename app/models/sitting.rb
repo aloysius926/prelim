@@ -9,4 +9,11 @@ class Sitting < ActiveRecord::Base
       "Q#{number}S#{year}"
     end
   end
+  def sort_sitting
+    if term.term == "Fall"
+      "#{year}F#{number}"
+    else
+      "#{year}S#{number}"
+    end
+  end
 end

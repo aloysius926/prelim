@@ -4,16 +4,16 @@
   %table.table.table-condensed#questions
     %thead
       %tr
-        %th= link_to 'Subject', questions_path(:sort => 'subject')
+        %th{:class => @subject_header}= link_to 'Subject', questions_path(:sort => 'subject')
         %th Source
         %th Professor
         %th Mini
-        %th Dates
-        %th= link_to 'Over', questions_path(:sort => 'overall')
+        %th= link_to 'Dates', questions_path(:sort => 'date')
+        %th{:class => @overall_header}= link_to 'Over', questions_path(:sort => 'overall')
         %th Diff
         %th Uniq
         %th # Answers
-        %th Finished
+        %th{:class => @finished_header}= link_to 'Finished', questions_path(:sort => 'finished')
         %th Question PDF
         %th More Info
     %tbody

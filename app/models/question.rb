@@ -9,6 +9,7 @@ class Question < ActiveRecord::Base
   has_many :finished_questions
   accepts_nested_attributes_for :sittings
   has_attached_file :pdf
+  before_post_process :rename_question
   
   def total_answers
     self.answers.size
@@ -28,5 +29,8 @@ class Question < ActiveRecord::Base
       'Y'
     end
   end
-  
+  def rename_question
+    extension = File.extname(pdf_file_name).downcase
+    self.pdf.instance_write :file_name, "#{self.subject.name}_#{self.sittings.first}#{extension}"
+  end
 end

@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+table th.hilite {
+ background-color: grey; 
+ font-weight: bold;
+}

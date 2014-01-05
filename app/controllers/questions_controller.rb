@@ -1,15 +1,35 @@
 class QuestionsController < ApplicationController
   def index
     sort = params[:sort] || session[:sort]
-    ordering = {:order => 'subject' }
+    @questions=Question.includes(:sittings).all
+    
+    case sort
+    when 'subject'
+      ordering, @subject_header = {:order => :subject}, 'hilite'
+      @questions.sort_by! {|u| u.subject.name}
+    when 'overall'
+      ordering, @overall_header = {:order => :overall}, 'hilite'
+      @questions.sort_by! {|u| u.overall.to_s}
+      @questions.reverse!
+    when 'finished'
+      ordering, @finished_header = {:order => :finished}, 'hilite'
+      @questions.sort_by! {|u| u.finished?(current_user).to_s}
+    when 'date'
+      @questions.sort_by! {|u| 
+                           if u.sittings.first
+                             u.sittings.first.sort_sitting
+                          else
+                            ""
+                          end}
+      @questions.reverse!
+    end
     if params[:sort] != session[:sort]
       session[:sort] = sort
       flash.keep
       redirect_to :sort => sort and return
     end
 
-    @questions=Question.includes(:sittings).all
-    @questions.sort_by! {|u| u.subject.name}
+    
   end
   def create
     Question.create(question_params)
