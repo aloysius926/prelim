@@ -32,6 +32,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @years = (2010..2013)
+    @subjects = Subject.all
   end
   
   private
