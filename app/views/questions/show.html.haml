@@ -3,7 +3,7 @@
   = render 'finished_questions/form'
   %h3 Tags
   - @question.tags.each do | tag |
-   = tag.tags
+    = tag.tags
   %h3 Dates Asked
   - @question.sittings.each do | sitting |
     = sitting.print_sitting
