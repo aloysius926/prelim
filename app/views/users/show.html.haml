@@ -29,7 +29,7 @@
             %th 4-1 
             %th 4-2
       %tbody
-        - @years.each do |yr|
+        - 2013.downto(2000) do |yr|
           %tr
             %td= yr
             - ["Fall", "Spring"].each do |term|
