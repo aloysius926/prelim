@@ -15,19 +15,18 @@ class Question < ActiveRecord::Base
   def self.fill_cell(yr,term,number,uid,subject)
     term_id = Term.where("term = :term", term: term).first.id
     @finished = FinishedQuestion.where("user_id = :user",user: uid).pluck(:question_id)
-    @sitting = Sitting.where("year=:yr AND term_id=:term AND number=:number",yr: yr,term: term_id,number: number).pluck(:question_id) 
-    if @sitting != "NULL"
-      @questions = Question.where("id is :qid AND subject_id = :subject",qid: @sitting, subject: subject)
-    end
-    if @questions.size==0 
-      ""
-    else
-      if @finished.include?(@questions.first.id)
-	"   X"
-      else
-	"   --"
+    
+    @sittings = Sitting.where("year=:yr AND term_id=:term AND number=:number",yr: yr,term: term_id,number: number)
+    @sittings.each do |s|
+      if s.question.subject.id == subject   
+        if @finished.include?(s.question.id)
+          return  "   X"
+        else
+	  return "   --"
+        end
       end
     end
+    return ""
   end
   
   def total_answers
