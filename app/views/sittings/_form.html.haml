@@ -1,4 +1,4 @@
-= form.fields_for :sitting do |e|
+= form_for [@question, @sitting] do |e|
   .field
     = e.label :year
     = e.select :year, (1990...2013)
@@ -8,3 +8,5 @@
   .field
     = e.label  :number
     = e.text_field  :number 
+  .actions
+    = e.submit
