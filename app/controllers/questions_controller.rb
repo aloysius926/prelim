@@ -38,6 +38,12 @@ class QuestionsController < ApplicationController
     end
    # @finished_question =FinishedQuestion.first
   end
+  
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+    redirect_to questions_path
+  end
 end
 
 private

@@ -41,3 +41,5 @@
     = f.file_field  :pdf
   
     = f.submit
+    
+  = link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' }
