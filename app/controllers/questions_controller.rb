@@ -13,6 +13,7 @@ class QuestionsController < ApplicationController
   end
   def create
     @question = Question.new(question_params)
+    @question.sittings.build(params[:sitting].permit(:term_id, :year, :number))
     params[:tags][:id].each do |tag|
       if !tag.empty?
 	@question.questiontags.build(:tag_id => tag)
@@ -26,6 +27,7 @@ class QuestionsController < ApplicationController
     @question = Question.new
     @all_tags = Tag.all.order(:tag)
     @question_tag = @question.questiontags.build
+    @question_sitting = @question.sittings.build
   end
   def show
     @question = Question.find(params[:id])
