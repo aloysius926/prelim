@@ -1,22 +1,28 @@
-.center.hero-unit
+.center-block
   %h1 All Questions
   %h3= @temp
-  %table.table.table-condensed#questions
+  %table.table.table-condensed.table-responsive#questions
     %thead
       %tr
         %th= sortable "subj", "Subject"
         %th Source
         %th= sortable "prof", "Professor"
         %th Mini
-        %th= sortable "last_date", "Date"
-        %th= sortable "overall", "Over"
-        %th= sortable "uniqueness", "Diff"
-        %th= sortable "uniqueness", "Uniq"
-        %th # Answers
-        %th Finished
+        %th
+          %span{title: "Dates Asked"}= sortable "last_date", "Date"
+        %th
+          %span{title: "Average Overall Rating"}= sortable "overall", "Over"
+        %th
+          %span{title: "Average Difficulty Rating"}= sortable "difficulty", "Diff"
+        %th
+          %span{title: "Average Uniqueness Rating"}= sortable "uniqueness", "Uniq"
+        %th 
+          %span{title: "Number of Answers Uploaded"} # Answers
+        %th
+          %span{title: "Finished?"} Fin?
         %th Tags
-        %th Question PDF
-        %th More Info
+        %th Q. PDF
+        %th More 
     %tbody
       - @questions.each do |question|
         %tr
@@ -27,6 +33,7 @@
           %td
             - question.sittings.each do | sitting |
               = sitting.print_sitting
+              %br
           %td= question.overall
           %td= question.difficulty
           %td= question.uniqueness
@@ -35,9 +42,9 @@
           %td
             - question.tags.each do |tag|
               = tag.tag
+              %br
           %td
-            = link_to("Download",question.pdf.url)
-          %td= link_to "More info", question_path(question)
+            = link_to("Down",question.pdf.url)
+          %td= link_to "More", question_path(question)
 
   = link_to "Add new question", new_question_path
-  = link_to "Sign up now!", signup_path
