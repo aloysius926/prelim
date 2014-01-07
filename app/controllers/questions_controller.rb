@@ -36,7 +36,7 @@ class QuestionsController < ApplicationController
     else
       @finished_question = FinishedQuestion.new
     end
-   # @finished_question =FinishedQuestion.first
+   
   end
   
   def destroy
@@ -44,7 +44,23 @@ class QuestionsController < ApplicationController
     @question.destroy
     redirect_to questions_path
   end
+  def edit
+    @question = Question.find(params[:id])
+  end
+
+  def update
+    @question = Question.find(params[:id])
+    if @question.update_attributes(question_params)
+      flash[:success] = "Question updated"
+      redirect_to :root
+    else
+      render 'edit'
+    end
+  end
+
+
 end
+
 
 private
 def question_params
