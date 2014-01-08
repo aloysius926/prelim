@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105164507) do
+ActiveRecord::Schema.define(version: 20140108020035) do
 
   create_table "answer_ratings", force: true do |t|
     t.integer  "user_id"
@@ -99,6 +99,11 @@ ActiveRecord::Schema.define(version: 20140105164507) do
 
   add_index "questiontags", ["question_id"], name: "index_questiontags_on_question_id"
   add_index "questiontags", ["tag_id"], name: "index_questiontags_on_tag_id"
+
+  create_table "rating_options", force: true do |t|
+    t.string  "label"
+    t.integer "value"
+  end
 
   create_table "sittings", force: true do |t|
     t.integer  "term_id"

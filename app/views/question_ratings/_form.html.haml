@@ -1,7 +1,15 @@
-= simple_form_for([@question, @question.question_ratings.build], :html => { :class => 'form-horizontal' })  do |f|
-  = f.input :overall,collection: 1..5
-  = f.input :uniqueness, collection: 1..5 
-  = f.input :difficulty, collection: 1..5
-  = f.input :comment
+= form_for([@question, @question.question_ratings.build], html: {class: "form-inline"})  do |f|
+  .row
+    = f.label :overall
+    =  f.collection_select :overall, RatingOption.all, :value, :label, include_blank: true
     
-  = f.button :submit
+    = f.label :uniqueness
+    =  f.collection_select :uniqueness, RatingOption.all, :value, :label, include_blank: true
+    
+    = f.label :difficulty
+    =  f.collection_select :difficulty, RatingOption.all, :value, :label, include_blank: true
+  .row  
+    = f.label :comment
+    = f.text_field :comment
+      
+    = f.submit
