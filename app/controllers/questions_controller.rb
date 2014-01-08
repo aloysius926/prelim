@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   helper_method :sort_column, :sort_direction
   def index
-    @questions=Question.includes(:sittings).all
+    @questions=Question.includes(:sittings, :subject, :tags, :source, :professor).all
     @questions.sort_by! {|u| if u.send(sort_column)
                            u.send(sort_column).to_s
                         else
