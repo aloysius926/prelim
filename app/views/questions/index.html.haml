@@ -1,6 +1,12 @@
 .center-block
   %h1 All Questions
-  %h3= @temp
+  
+  = search_form_for @q do |f|
+    = f.label :mini
+    = f.text_field :mini_cont
+    
+    = f.submit
+  
   %table.table.table-condensed.table-responsive#questions
     %thead
       %tr
