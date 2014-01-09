@@ -52,7 +52,9 @@ class Question < ActiveRecord::Base
     self.professor.name
   end
   def last_date
-    @sittings =self.sittings.sort_by! {|u| u.year}
+    @sittings =self.sittings.sort_by {|u| u.year}
+    @sittings.sort_by! {|u| u.term_id}
+    @sittings.sort_by! {|u| u.number}
     @sittings.last
   end
 end
