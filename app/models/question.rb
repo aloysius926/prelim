@@ -53,8 +53,7 @@ class Question < ActiveRecord::Base
   end
   def last_date
     @sittings =self.sittings.sort_by {|u| u.year}
-    @sittings.sort_by! {|u| u.term_id}
-    @sittings.sort_by! {|u| u.number}
-    @sittings.last
+    @sitting = @sittings.last
+    @sitting.sort_sitting
   end
 end
