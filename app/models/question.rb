@@ -32,14 +32,12 @@ class Question < ActiveRecord::Base
   def total_answers
     self.answers.size
   end
-  def overall
-    QuestionRating.where(question_id: self.id).average(:overall)
-  end
-  def uniqueness
-    QuestionRating.where(question_id: self.id).average(:uniqueness)
-  end
-  def difficulty
-    QuestionRating.where(question_id: self.id).average(:difficulty)
+  def update_question_ratings
+    @ratings = QuestionRating.where(question_id: self.id)
+    self.overall = @ratings.average(:overall)
+    self.difficulty = @ratings.average(:difficulty)
+    self.uniqueness = @ratings.average(:uniqueness)
+    self.save!
   end
   
   def finished?(current_user)

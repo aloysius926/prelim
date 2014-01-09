@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108220607) do
+ActiveRecord::Schema.define(version: 20140109022511) do
 
   create_table "answer_ratings", force: true do |t|
     t.integer  "user_id"
@@ -85,6 +85,9 @@ ActiveRecord::Schema.define(version: 20140108220607) do
     t.integer  "pdf_file_size"
     t.datetime "pdf_updated_at"
     t.integer  "answers_count",    default: 0
+    t.float    "overall",          default: 3.0
+    t.float    "difficulty",       default: 3.0
+    t.float    "uniqueness",       default: 3.0
   end
 
   add_index "questions", ["professor_id"], name: "index_questions_on_professor_id"
