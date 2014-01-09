@@ -11,6 +11,7 @@ class Question < ActiveRecord::Base
   has_many :questiontags, dependent: :destroy
   accepts_nested_attributes_for :sittings
   has_attached_file :pdf
+  after_create :update_question_ratings
   
   def self.fill_cell(yr,term,number,uid,subject)
     term_id = Term.where("term = :term", term: term).first.id
