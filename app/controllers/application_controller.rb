@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  include SessionsHelper
+  include UserSessionsHelper
   before_action :signed_in_user
   private
   def signed_in_user

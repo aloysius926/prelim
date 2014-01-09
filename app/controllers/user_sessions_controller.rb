@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class UserSessionsController < ApplicationController
   skip_before_action :signed_in_user, only: [:new, :create]
   def new
   end
@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      sign_in user
+      sign_in_individual user
       redirect_back_or  :root
     else
       flash.now[:error] = 'Invalid email/password combination' # Not quite right!
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    sign_out
+    sign_out_user
     redirect_to :root
   end
 end
