@@ -1,6 +1,6 @@
 
 source 'http://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 gem 'rails', '4.0.1'
 
 group :development, :test do
@@ -34,7 +34,7 @@ group :production do
 end
 
 group :assets do
-  gem 'therubyracer' #, "~> 0.9.9"
+  #gem 'therubyracer' #, "~> 0.9.9"
   gem 'sass-rails', "~> 4.0.0"
   gem 'coffee-rails', "~> 4.0.0"
   gem 'uglifier'
