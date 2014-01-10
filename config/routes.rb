@@ -5,6 +5,7 @@ Prelims::Application.routes.draw do
   resources :questions do 
     resources :sittings
     resources :question_ratings
+    resources :question_tags
     
     resources :answers do
       resources :answer_ratings
@@ -16,7 +17,7 @@ Prelims::Application.routes.draw do
   end
   resources :users
   resources :tags
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :user_sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'user_sessions#new',         via: 'get'
   match '/signout', to: 'user_sessions#destroy',     via: 'delete'
