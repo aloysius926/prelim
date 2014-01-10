@@ -18,8 +18,8 @@ Prelims::Application.routes.draw do
   resources :tags
   resources :sessions, only: [:new, :create, :destroy]
   match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/signin',  to: 'user_sessions#new',         via: 'get'
+  match '/signout', to: 'user_sessions#destroy',     via: 'delete'
   match '/help' => 'static#help', via: 'get'
   #get 'questions/:question_id/answers/:id/answer_ratings/new', :to => 'answer_ratings#new', :as => :answer_id 
 end

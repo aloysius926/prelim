@@ -48,7 +48,7 @@ module Prelims
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
     #config.active_record.whitelist_attributes = true
-    config.i18n.enforce_available_locales = true
+    config.i18n.enforce_available_locales = false
     # Enable the asset pipeline
     config.assets.enabled = true
 
