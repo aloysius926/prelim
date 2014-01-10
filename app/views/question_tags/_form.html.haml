@@ -1,0 +1,4 @@
+= form_for(@question_tag, html: {class: "form-inline"})  do |f|
+  = f.collection_select :tags, :id, Tag.all, :id, :tag
+  = f.hidden_field :question_id, :value => params[:id]
+  = f.submit

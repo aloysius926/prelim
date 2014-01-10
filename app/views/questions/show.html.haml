@@ -4,6 +4,7 @@
   %h3 Tags
   - @question.tags.each do | tag |
     = tag.tag
+  = render 'question_tags/form'
   %h3 Dates Asked
   - @question.sittings.each do | sitting |
     = sitting.print_sitting

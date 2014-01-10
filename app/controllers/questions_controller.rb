@@ -31,6 +31,7 @@ class QuestionsController < ApplicationController
   end
   def show
     @question = Question.find(params[:id])
+    @question_tag = QuestionTag.new
     if current_user.finished_questions.where("question_id = ?", params[:id]).size > 0
       @finished_question = current_user.finished_questions.where("question_id = ?", params[:id]).first
     else
