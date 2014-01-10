@@ -3,7 +3,7 @@ class QuestiontagsController < ApplicationController
     
   end
   def create
-    @questiontag = Questiontag.create(params[:questiontag].permit(:tag,:question_id))
+    @questiontag = Questiontag.create(params[:questiontag].permit(:tag_id,:question_id))
     @questiontag.save!
     
     redirect_to question_path(@questiontag.question)
