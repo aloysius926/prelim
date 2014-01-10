@@ -3,4 +3,9 @@ class QuestionRating < ActiveRecord::Base
   belongs_to :question
   validates :overall, :user, :question, presence: true
   validates_uniqueness_of :question_id, :scope => :user_id
+  after_create :update_question_rating
+  
+  def update_question_rating
+    question.update_question_ratings
+  end
 end

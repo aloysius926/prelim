@@ -11,6 +11,7 @@ class Question < ActiveRecord::Base
   has_many :questiontags, dependent: :destroy
   accepts_nested_attributes_for :sittings
   has_attached_file :pdf
+  after_create :update_question_ratings
   
   def self.fill_cell(yr,term,number,uid,subject)
     term_id = Term.where("term = :term", term: term).first.id
@@ -32,14 +33,12 @@ class Question < ActiveRecord::Base
   def total_answers
     self.answers.size
   end
-  def overall
-    QuestionRating.where(question_id: self.id).average(:overall)
-  end
-  def uniqueness
-    QuestionRating.where(question_id: self.id).average(:uniqueness)
-  end
-  def difficulty
-    QuestionRating.where(question_id: self.id).average(:difficulty)
+  def update_question_ratings
+    @ratings = QuestionRating.where(question_id: self.id)
+    self.overall = @ratings.average(:overall)
+    self.difficulty = @ratings.average(:difficulty)
+    self.uniqueness = @ratings.average(:uniqueness)
+    self.save!
   end
   
   def finished?(current_user)
@@ -54,7 +53,8 @@ class Question < ActiveRecord::Base
     self.professor.name
   end
   def last_date
-    @sittings =self.sittings.sort_by! {|u| u.year}
-    @sittings.last
+    @sittings =self.sittings.sort_by {|u| u.year}
+    @sitting = @sittings.last
+    @sitting.sort_sitting
   end
 end
