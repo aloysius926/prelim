@@ -5,12 +5,13 @@ Prelims::Application.routes.draw do
   resources :questions do 
     resources :sittings
     resources :question_ratings
-    resources :question_tags
+    
     
     resources :answers do
       resources :answer_ratings
     end
   end
+  resources :questiontags
   resources :finished_questions
   resources :answers do
     resources :answer_ratings

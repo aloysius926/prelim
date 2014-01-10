@@ -26,12 +26,12 @@ class QuestionsController < ApplicationController
   def new
     @question = Question.new
     @all_tags = Tag.all.order(:tag)
-    @question_tag = @question.questiontags.build
+    @questiontag = @question.questiontags.build
     @question_sitting = @question.sittings.build
   end
   def show
     @question = Question.find(params[:id])
-    @question_tag = QuestionTag.new
+    @questiontag = Questiontag.new
     if current_user.finished_questions.where("question_id = ?", params[:id]).size > 0
       @finished_question = current_user.finished_questions.where("question_id = ?", params[:id]).first
     else
