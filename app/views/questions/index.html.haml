@@ -1,36 +1,30 @@
 .center-block
   %h1 All Questions
   
-  = search_form_for( @search) do |f|
-    = f.label :mini
-    = f.text_field :mini_eq
-    
-    = f.label "Year Asked"
-    = f.text_field :sittings_year_eq, size:6
-    
-    = f.label "Question Number"
-    = f.text_field :sittings_number_eq, size:6
-    
-    = f.label "Subject"
-    = f.text_field :subject_name_cont, size:6
-    
-    = f.submit
+  = search_form_for( @search, url: search_questions_path, method: :post) do |f|
+    = f.condition_fields do |c|
+      = render 'condition_fields', f: c
+    = link_to_add_fields "Add Conditions", f, :condition
+    Sort:
+    = f.sort_fields do |s|
+      = s.sort_select associations: [:sittings, :tags]
+    = f.submit "Search"
   
   %table.table.table-condensed.table-responsive#questions
     %thead
       %tr
-        %th= sortable "subj", "Subject"
+        %th Subject
         %th Source
-        %th= sortable "prof", "Professor"
+        %th Professor
         %th Mini
         %th
-          %span{title: "Dates Asked"}= sortable "last_date", "Date"
+          %span{title: "Dates Asked"} Date
         %th
-          %span{title: "Average Overall Rating"}= sortable "overall", "Over"
+          %span{title: "Average Overall Rating"} Over
         %th
-          %span{title: "Average Difficulty Rating"}= sortable "difficulty", "Diff"
+          %span{title: "Average Difficulty Rating"} Diff
         %th
-          %span{title: "Average Uniqueness Rating"}= sortable "uniqueness", "Uniq"
+          %span{title: "Average Uniqueness Rating"} Uniq
         %th 
           %span{title: "Number of Answers Uploaded"} # Answers
         %th

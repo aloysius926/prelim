@@ -5,7 +5,7 @@ Prelims::Application.routes.draw do
   resources :questions do 
     resources :sittings
     resources :question_ratings
-    
+    collection { post :search, to: 'questions#index'}
     
     resources :answers do
       resources :answer_ratings
