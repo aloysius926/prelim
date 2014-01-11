@@ -34,7 +34,7 @@ group :production do
 end
 
 group :assets do
-  #gem 'therubyracer' #, "~> 0.9.9"
+  gem 'therubyracer' #, "~> 0.9.9"
   gem 'sass-rails', "~> 4.0.0"
   gem 'coffee-rails', "~> 4.0.0"
   gem 'uglifier'

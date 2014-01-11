@@ -1,9 +1,18 @@
 .center-block
   %h1 All Questions
   
-  = search_form_for @q do |f|
+  = search_form_for( @search) do |f|
     = f.label :mini
-    = f.text_field :mini_cont
+    = f.text_field :mini_eq
+    
+    = f.label "Year Asked"
+    = f.text_field :sittings_year_eq, size:6
+    
+    = f.label "Question Number"
+    = f.text_field :sittings_number_eq, size:6
+    
+    = f.label "Subject"
+    = f.text_field :subject_name_cont, size:6
     
     = f.submit
   
