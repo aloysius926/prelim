@@ -25,10 +25,10 @@ group :test do
 end
 
 group :production do
-  gem 'aws-sdk'
   gem 'rails_serve_static_assets'
   gem 'rails_12factor'
   gem 'unicorn'
+  gem 'mail'
 end
 
 group :assets do
@@ -37,6 +37,7 @@ group :assets do
   gem 'coffee-rails', "~> 4.0.0"
   gem 'uglifier'
 end
+gem 'aws-sdk'
 gem 'pg'
 gem 'ransack'
 gem 'activeadmin', github: 'gregbell/active_admin'

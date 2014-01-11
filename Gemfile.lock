@@ -277,6 +277,7 @@ DEPENDENCIES
   haml
   jquery-rails
   launchy
+  mail
   paperclip (~> 3.0)
   pg
   rails (= 4.0.1)
