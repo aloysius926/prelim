@@ -1,4 +1,5 @@
 Prelims::Application.routes.draw do
+  get "password_resets/new"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root :to => "questions#index"
@@ -11,6 +12,7 @@ Prelims::Application.routes.draw do
       resources :answer_ratings
     end
   end
+  resources :password_resets
   resources :questiontags
   resources :finished_questions
   resources :answers do
