@@ -4,7 +4,6 @@ ruby '2.0.0'
 gem 'rails', '4.0.1'
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'debugger'
   gem 'database_cleaner'
   gem 'capybara'
@@ -26,7 +25,6 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'aws-sdk'
   gem 'rails_serve_static_assets'
   gem 'rails_12factor'
@@ -39,7 +37,7 @@ group :assets do
   gem 'coffee-rails', "~> 4.0.0"
   gem 'uglifier'
 end
-
+gem 'pg'
 gem 'ransack'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'turbolinks'
