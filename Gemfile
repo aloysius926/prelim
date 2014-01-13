@@ -37,6 +37,7 @@ group :assets do
   gem 'coffee-rails', "~> 4.0.0"
   gem 'uglifier'
 end
+gem 'i18n', github: 'svenfuchs/i18n'
 gem 'aws-sdk'
 gem 'pg'
 gem 'ransack'
