@@ -11,7 +11,7 @@
     = f.label :professor
     = f.collection_select  :professor_id, Professor.all, :id, :name, include_blank: true
     %p
-    = fields_for(@question_tag) do |ab|
+    = fields_for(@questiontag) do |ab|
       = ab.label :tag, "Tags: hold crtl while clicking to select multiple"
       = collection_select :tags, :id, @all_tags, :id, :tag,  {}, {:multiple => true}
     %p

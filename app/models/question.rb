@@ -8,6 +8,7 @@ class Question < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_many :finished_questions, dependent: :destroy
   has_many :tags, :through => :questiontags
+  has_many :terms, :through => :sittings
   has_many :questiontags, dependent: :destroy
   accepts_nested_attributes_for :sittings
   has_attached_file :pdf
