@@ -40,7 +40,7 @@ end
 gem 'aws-sdk'
 gem 'pg'
 gem 'ransack'
-#gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'turbolinks'
 gem 'simple_form'
 gem 'jquery-rails'
