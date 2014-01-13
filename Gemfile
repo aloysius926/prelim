@@ -24,27 +24,27 @@ group :test do
 end
 
 group :production do
-  gem 'rails_serve_static_assets'
-  gem 'rails_12factor'
+  #gem 'rails_serve_static_assets'
+  #gem 'rails_12factor'
   gem 'unicorn'
   gem 'mail'
 end
 
 group :assets do
-  gem 'therubyracer' #, "~> 0.9.9"
+  #gem 'therubyracer' #, "~> 0.9.9"
   gem 'sass-rails', "~> 4.0.0"
   gem 'coffee-rails', "~> 4.0.0"
   gem 'uglifier'
 end
-gem 'i18n', github: 'svenfuchs/i18n'
+
 gem 'aws-sdk'
 gem 'pg'
 gem 'ransack'
-gem 'activeadmin', github: 'gregbell/active_admin'
+#gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'turbolinks'
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'haml'
 gem "paperclip", "~> 3.0"
-gem 'bootstrap-sass'
+#gem 'bootstrap-sass'
 gem 'bcrypt-ruby','3.1.2'
