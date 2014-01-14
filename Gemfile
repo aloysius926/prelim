@@ -35,6 +35,8 @@ group :assets do
   gem 'sass-rails', "~> 4.0.0"
   gem 'coffee-rails', "~> 4.0.0"
   gem 'uglifier'
+  gem 'twitter-bootstrap-rails'
+  gem 'less-rails'
 end
 
 gem 'aws-sdk'
@@ -46,6 +48,4 @@ gem 'simple_form'
 gem 'jquery-rails'
 gem 'haml'
 gem "paperclip", "~> 3.0"
-#gem 'bootstrap-sass'
-gem 'less-rails-bootstrap'
 gem 'bcrypt-ruby','3.1.2'
