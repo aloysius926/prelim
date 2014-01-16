@@ -1,46 +1,52 @@
-.center-block
-  %h1 Question
-  = render 'finished_questions/form'
-  %h3 Tags
-  - @question.tags.each do | tag |
-    = tag.tag
-  = render 'questiontags/form'
-  %h3 Dates Asked
-  - @question.sittings.each do | sitting |
-    = sitting.print_sitting
-  = link_to 'Add Sitting', new_question_sitting_path(@question)
 
-  %h3 Overal Question Rating
-  = render 'question_ratings/table'
+.container-fluid.row-fluid
+  .span4
+    = render 'finished_questions/form'
+    = link_to 'Edit Question', edit_question_path(@question)
+  .span4
+    %h5 Dates Asked
+    - @question.sittings.each do | sitting |
+      = sitting.print_sitting
+      ,
+    = link_to 'Add Date', new_question_sitting_path(@question)    
+  .span4
+    %h5 Tags
+    - @question.tags.each do | tag |
+      = tag.tag
+      ,
+    = render 'questiontags/form'
+
+.container-fluid.row-fluid.span12
+  %h3.text-center Question Ratings
+= render 'question_ratings/table'
+.container-fluid.row-fluid.span12
   = render 'question_ratings/form' 
-  = link_to 'Add Question Rating', new_question_question_rating_path(@question)
 
-  %h2 Answers
+.container-fluid.row-fluid.span12
+  %h3.text-center Answers
 
-  %table.table 
-    %thead
+%table.table.table-bordered 
+  %thead
+    %tr
+      %th Overall 
+      %th Clarity
+      %th Detail
+      %th Correctness
+      %th Answer PDF
+      %th User Name
+      %th Review Answer
+  %tbody
+    - @question.answers.each do |answer|
       %tr
-        %th Overall 
-        %th Clarity
-        %th Detail
-        %th Correctness
-        %th Answer PDF
-        %th User Name
-        %th Review Answer
-    %tbody
-      - @question.answers.each do |answer|
-        %tr
-          %td= answer.overall
-          %td= answer.clarity
-          %td= answer.detail
-          %td= answer.correctness
-          %td= link_to("Download",answer.pdf.url)
-          %td= answer.user.name
-          %td= link_to 'More info', question_answer_path(:id => answer.id, :question_id => answer.question.id)
-  = form_for([@question, @question.answers.build]) do |f|
-    = f.label  :file
-    = f.file_field  :pdf
+        %td= answer.overall
+        %td= answer.clarity
+        %td= answer.detail
+        %td= answer.correctness
+        %td= link_to("Download",answer.pdf.url)
+        %td= answer.user.name
+        %td= link_to 'More info', question_answer_path(:id => answer.id, :question_id => answer.question.id)
+= form_for([@question, @question.answers.build]) do |f|
+  = f.label  :file
+  = f.file_field  :pdf
+  = f.submit "Add Answer"
   
-    = f.submit
-    
-  = link_to 'Destroy', @question, method: :delete, data: { confirm: 'Are you sure?' }

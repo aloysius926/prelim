@@ -22,6 +22,10 @@ class Question < ActiveRecord::Base
     self.save!
   end
   
+  def total_answers
+    self.answers.size
+  end
+  
   def subj
     self.subject.name
   end

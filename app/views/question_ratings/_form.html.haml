@@ -1,4 +1,4 @@
-= form_for([@question, @question.question_ratings.build], html: {class: "form-inline"})  do |f|
+= form_for([@question,@question_rating], html: {class: "form-inline"}) do |f|
   .row
     = f.label :overall
     =  f.collection_select :overall, RatingOption.all, :value, :label, include_blank: true
@@ -11,5 +11,7 @@
   .row  
     = f.label :comment
     = f.text_field :comment
+    
+    = f.hidden_field :question_id, :value => params[:id]
       
     = f.submit

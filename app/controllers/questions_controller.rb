@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   helper_method :sort_column, :sort_direction
   def index
-    @search = Question.includes(:sittings, :subject, :tags, :source, :professor, :finished_questions).search(params[:q])
+    @search = Question.includes(:sittings, :subject, :tags, :source, :professor).search(params[:q])
     @questions = @search.result()
     @search.build_condition if @search.conditions.empty?
     @search.build_sort if @search.sorts.empty?
@@ -33,6 +33,12 @@ class QuestionsController < ApplicationController
       @finished_question = current_user.finished_questions.where("question_id = ?", params[:id]).first
     else
       @finished_question = FinishedQuestion.new
+    end
+
+    if current_user.question_ratings.where("question_id = ?", params[:id]).size > 0
+      @question_rating = current_user.question_ratings.where("question_id = ?", params[:id]).first
+    else
+      @question_rating = QuestionRating.new
     end
    
   end
