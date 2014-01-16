@@ -34,7 +34,7 @@
           - ["Fall", "Spring"].each do |term|
             - (1..4).each do |first|
               - (1..2).each do |second|
-                %td= Question.fill_cell(yr,term,"#{first}-#{second}",current_user.id,1) 
+                %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,1) 
                 
                 
                 
@@ -72,7 +72,7 @@
           - ["Fall", "Spring"].each do |term|
             - (1..4).each do |first|
               - (1..2).each do |second|
-                %td= Question.fill_cell(yr,term,"#{first}-#{second}",current_user.id,2) 
+                %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,2) 
                 
                 
   %table.table.table-bordered
@@ -104,4 +104,4 @@
           - ["Fall", "Spring"].each do |term|
             - (1..2).each do |first|
               - (1..5).each do |second|
-                %td= Question.fill_cell(yr,term,"#{first}-#{second}",current_user.id,2)                
+                %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,2)                
