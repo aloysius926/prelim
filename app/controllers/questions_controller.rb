@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   helper_method :sort_column, :sort_direction
   def index
-    @search = Question.search(params[:q])
+    @search = Question.includes(:sittings, :subject, :tags, :source, :professor, :finished_questions).search(params[:q])
     @questions = @search.result()
     @search.build_condition if @search.conditions.empty?
     @search.build_sort if @search.sorts.empty?

@@ -14,9 +14,6 @@ class Question < ActiveRecord::Base
   has_attached_file :pdf
   after_create :update_question_ratings
   
-  def total_answers
-    self.answers.size
-  end
   def update_question_ratings
     @ratings = QuestionRating.where(question_id: self.id)
     self.overall = @ratings.average(:overall)
@@ -25,11 +22,6 @@ class Question < ActiveRecord::Base
     self.save!
   end
   
-  def finished?(current_user)
-    if self.finished_questions.where(user_id: current_user.id).exists?
-      'Y'
-    end
-  end
   def subj
     self.subject.name
   end

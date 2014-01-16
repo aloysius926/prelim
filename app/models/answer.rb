@@ -3,17 +3,14 @@ class Answer < ActiveRecord::Base
   belongs_to :question, :counter_cache => true
   has_many :answer_ratings
   has_attached_file :pdf
-  
-  def overall
-    AnswerRating.where(answer_id: self.id).average(:overall)
+  after_create :update_answer_ratings
+   
+  def update_answer_ratings
+    @ratings = AnswerRating.where(answer_id: self.id)
+    self.overall = @ratings.average(:overall)
+    self.clarity = @ratings.average(:clarity)
+    self.detail = @ratings.average(:detail)
+    self.correctness = @ratings.average(:correctness)
+    self.save!
   end
-  def clarity
-    AnswerRating.where(answer_id: self.id).average(:clarity)
-  end
-  def detail
-    AnswerRating.where(answer_id: self.id).average(:detail)
-  end
-  def correctness
-    AnswerRating.where(answer_id: self.id).average(:correctness)
-  end  
 end
