@@ -54,6 +54,7 @@ gem 'bcrypt-ruby','3.1.2'
 
 
 group :development, :test do
+  begin
   require 'yaml'
 # Loads the database adapter gem based on config/database.yml
 db_gems = { "postgresql" => ["pg"],
@@ -67,4 +68,6 @@ else
 end
 gem *db_gems[adapter]
 ### Taken from stack overflow 4151495 should gemfile.lock be included in gitignore
+rescue 
+  gem "pg"
 end
