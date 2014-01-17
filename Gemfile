@@ -60,7 +60,7 @@ db = YAML.load_file(db_config)
 # Fetch first configured adapter
 (db["production"] || db["development"] || db["test"])["adapter"]
 else
-  "sqlite3"
+  "pg"
 end
 gem *db_gems[adapter]
 ### Taken from stack overflow 4151495 should gemfile.lock be included in gitignore
