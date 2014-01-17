@@ -17,3 +17,4 @@
 *.*~
 Gemfile~
 /public/assets
+config/database.yml
