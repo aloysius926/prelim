@@ -1,5 +1,6 @@
+- title "Sign In"
 .hero-unit
-  %h3 Sign in
+  %h3 Please Sign In to Access Website
 
   = form_for(:user_session, url: user_sessions_path) do |f|
     = f.label :email
@@ -7,7 +8,9 @@
 
     = f.label :password
     = f.password_field :password
+    
     = link_to "forgot password?", new_password_reset_path
+    %p
     = f.submit "Sign In"
 
 
