@@ -40,7 +40,7 @@ group :assets do
 end
 
 gem 'aws-sdk'
-gem 'pg'
+
 gem 'ransack'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'turbolinks'
@@ -49,3 +49,18 @@ gem 'jquery-rails'
 gem 'haml'
 gem "paperclip", "~> 3.0"
 gem 'bcrypt-ruby','3.1.2'
+
+
+require 'yaml'
+# Loads the database adapter gem based on config/database.yml
+db_gems = { "postgresql" => ["pg"],
+            "sqlite3" => ["sqlite3"]}
+adapter = if File.exists?(db_config = File.join(File.dirname(__FILE__),"config","database.yml"))
+db = YAML.load_file(db_config)
+# Fetch first configured adapter
+(db["production"] || db["development"] || db["test"])["adapter"]
+else
+  "sqlite3"
+end
+gem *db_gems[adapter]
+### Taken from stack overflow 4151495 should gemfile.lock be included in gitignore

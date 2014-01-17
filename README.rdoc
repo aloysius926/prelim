@@ -1,5 +1,14 @@
 == Welcome to Rails
 
+Instructions to setting up the application
+1. Copty config/database.yml.example into config/database.yml and fill it with your settings
+2. Set the environment variables defined in config/environments/development.rb related to paperclip.
+See stackoverflow "paperclip environment variables" note you will need an amazon s3 account for this.
+
+
+
+
+
 Rails is a web-application framework that includes everything needed to create
 database-backed web applications according to the Model-View-Control pattern.
 
