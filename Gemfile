@@ -14,6 +14,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'rack-mini-profiler'
   gem "rails_best_practices"
+  
+  gem 'guard-rspec'
+  gem 'guard-livereload'
 end
 
 group :development do
@@ -26,7 +29,7 @@ group :test do
   gem 'faker'
   gem 'capybara'
   gem 'launchy'
-  gem 'guard-rspec'
+  
 end
 
 group :production do
