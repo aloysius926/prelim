@@ -65,11 +65,11 @@ begin
   # Fetch first configured adapter
   (db["development"] || db["test"])["adapter"]
   else
-    "pg"
+    "sqlite3"
   end
   gem *db_gems[adapter]
   ### Taken from stack overflow 4151495 should gemfile.lock be included in gitignore
 rescue 
-  gem "pg"
+  gem "sqlite3"
 end
 end
