@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140116175033) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
     t.text     "body"
@@ -27,9 +24,9 @@ ActiveRecord::Schema.define(version: 20140116175033) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
   create_table "admin_users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -46,8 +43,8 @@ ActiveRecord::Schema.define(version: 20140116175033) do
     t.datetime "updated_at"
   end
 
-  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
-  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "answer_ratings", force: true do |t|
     t.integer  "user_id"
@@ -61,8 +58,8 @@ ActiveRecord::Schema.define(version: 20140116175033) do
     t.string   "comment"
   end
 
-  add_index "answer_ratings", ["answer_id"], name: "index_answer_ratings_on_answer_id", using: :btree
-  add_index "answer_ratings", ["user_id"], name: "index_answer_ratings_on_user_id", using: :btree
+  add_index "answer_ratings", ["answer_id"], name: "index_answer_ratings_on_answer_id"
+  add_index "answer_ratings", ["user_id"], name: "index_answer_ratings_on_user_id"
 
   create_table "answers", force: true do |t|
     t.integer  "user_id"
@@ -80,8 +77,8 @@ ActiveRecord::Schema.define(version: 20140116175033) do
     t.float    "detail"
   end
 
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
-  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id"
 
   create_table "finished_questions", force: true do |t|
     t.integer  "user_id"
@@ -91,8 +88,8 @@ ActiveRecord::Schema.define(version: 20140116175033) do
     t.datetime "updated_at"
   end
 
-  add_index "finished_questions", ["question_id"], name: "index_finished_questions_on_question_id", using: :btree
-  add_index "finished_questions", ["user_id"], name: "index_finished_questions_on_user_id", using: :btree
+  add_index "finished_questions", ["question_id"], name: "index_finished_questions_on_question_id"
+  add_index "finished_questions", ["user_id"], name: "index_finished_questions_on_user_id"
 
   create_table "professors", force: true do |t|
     t.string   "name"
@@ -111,8 +108,8 @@ ActiveRecord::Schema.define(version: 20140116175033) do
     t.datetime "updated_at"
   end
 
-  add_index "question_ratings", ["question_id"], name: "index_question_ratings_on_question_id", using: :btree
-  add_index "question_ratings", ["user_id"], name: "index_question_ratings_on_user_id", using: :btree
+  add_index "question_ratings", ["question_id"], name: "index_question_ratings_on_question_id"
+  add_index "question_ratings", ["user_id"], name: "index_question_ratings_on_user_id"
 
   create_table "questions", force: true do |t|
     t.integer  "subject_id"
@@ -131,9 +128,9 @@ ActiveRecord::Schema.define(version: 20140116175033) do
     t.float    "uniqueness",       default: 3.0
   end
 
-  add_index "questions", ["professor_id"], name: "index_questions_on_professor_id", using: :btree
-  add_index "questions", ["source_id"], name: "index_questions_on_source_id", using: :btree
-  add_index "questions", ["subject_id"], name: "index_questions_on_subject_id", using: :btree
+  add_index "questions", ["professor_id"], name: "index_questions_on_professor_id"
+  add_index "questions", ["source_id"], name: "index_questions_on_source_id"
+  add_index "questions", ["subject_id"], name: "index_questions_on_subject_id"
 
   create_table "questiontags", force: true do |t|
     t.integer  "question_id"
@@ -142,8 +139,8 @@ ActiveRecord::Schema.define(version: 20140116175033) do
     t.datetime "updated_at"
   end
 
-  add_index "questiontags", ["question_id"], name: "index_questiontags_on_question_id", using: :btree
-  add_index "questiontags", ["tag_id"], name: "index_questiontags_on_tag_id", using: :btree
+  add_index "questiontags", ["question_id"], name: "index_questiontags_on_question_id"
+  add_index "questiontags", ["tag_id"], name: "index_questiontags_on_tag_id"
 
   create_table "rating_options", force: true do |t|
     t.string  "label"
@@ -159,8 +156,8 @@ ActiveRecord::Schema.define(version: 20140116175033) do
     t.integer  "question_id"
   end
 
-  add_index "sittings", ["question_id"], name: "index_sittings_on_question_id", using: :btree
-  add_index "sittings", ["term_id"], name: "index_sittings_on_term_id", using: :btree
+  add_index "sittings", ["question_id"], name: "index_sittings_on_question_id"
+  add_index "sittings", ["term_id"], name: "index_sittings_on_term_id"
 
   create_table "sources", force: true do |t|
     t.text     "source"
@@ -197,7 +194,7 @@ ActiveRecord::Schema.define(version: 20140116175033) do
     t.datetime "password_reset_sent_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end
