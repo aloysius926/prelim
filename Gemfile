@@ -20,6 +20,7 @@ end
 
 group :development do
   gem 'rails_layout'
+  gem 'quiet_assets'
 end
 
 group :test do
