@@ -3,7 +3,7 @@ class TagsController < ApplicationController
     @tag = Tag.new
   end
   def create
-    @tag = Tag.create(params[:tag].permit(:tag))
+    @tag = Tag.create!(params[:tag].permit(:tag))
     redirect_to questions_path
   end
   

@@ -5,7 +5,6 @@ class QuestionsController < ApplicationController
     @questions = @search.result()
     @search.build_condition if @search.conditions.empty?
     @search.build_sort if @search.sorts.empty?
-    #@questions=Question.includes(:sittings, :subject, :tags, :source, :professor).all
     @current_user = current_user
   end
   def create

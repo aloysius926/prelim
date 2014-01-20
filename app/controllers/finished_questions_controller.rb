@@ -9,7 +9,6 @@ class FinishedQuestionsController < ApplicationController
   def new
   end
   def update
-    
     @finished_question = FinishedQuestion.find(params[:id])
     @question = @finished_question.question
     @finished_question.update_attributes(params[:finished_question].permit(:finished))
