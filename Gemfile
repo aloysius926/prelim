@@ -39,6 +39,7 @@ group :production do
   gem 'unicorn'
   gem 'mail'
   gem 'pg'
+  gem 'newrelic_rpm'
 end
 
 group :assets do
