@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @subjects = Subject.all
+    @finished = FinishedQuestion.where("user_id = :user",user: current_user.id).pluck(:question_id)
   end
   
   private

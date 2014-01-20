@@ -12,6 +12,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'thin'
   gem 'factory_girl_rails'
+  gem 'rack-mini-profiler'
+  gem "rails_best_practices"
 end
 
 group :development do
