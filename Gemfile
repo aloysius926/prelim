@@ -12,7 +12,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'factory_girl_rails'
-  gem 'rack-mini-profiler'
   gem "rails_best_practices"
   
   gem 'guard-rspec'
@@ -77,7 +76,7 @@ gem 'bcrypt-ruby','3.1.2'
 
 
 group :development, :test do
-begin  
+  require 'yaml'
   # Loads the database adapter gem based on config/database.yml
   db_gems = { "postgresql" => ["pg"],
               "sqlite3" => ["sqlite3"]}
@@ -90,7 +89,6 @@ begin
   end
   gem *db_gems[adapter]
   ### Taken from stack overflow 4151495 should gemfile.lock be included in gitignore
-rescue 
-  gem "sqlite3"
-end
+  gem 'rack-mini-profiler'
+
 end
