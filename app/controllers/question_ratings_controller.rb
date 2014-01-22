@@ -1,6 +1,6 @@
 class QuestionRatingsController < ApplicationController
   def index
-    
+
   end
   def create
     @question = Question.find(params[:question_id])
@@ -10,9 +10,9 @@ class QuestionRatingsController < ApplicationController
     redirect_to question_path(@question)
   end
   def new
-    
+
   end
   def show
-    
+
   end
 end

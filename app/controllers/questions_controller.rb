@@ -39,9 +39,9 @@ class QuestionsController < ApplicationController
     else
       @question_rating = QuestionRating.new
     end
-   
+
   end
-  
+
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
@@ -74,7 +74,7 @@ end
     #Question.column_names.include?(params[:sort]) ? params[:sort] : "subject_id"
                         params[:sort] || "subject_id"
   end
-  
+
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :signed_in_user, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update, :show]
-  
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -15,11 +15,11 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
-  
+
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
@@ -29,18 +29,18 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def show
     @user = User.find(params[:id])
     @subjects = Subject.all
     @finished = FinishedQuestion.where("user_id = :user",user: current_user.id).pluck(:question_id)
   end
-  
+
   private
     def user_params
       params.require(:user).permit(:name,:email,:password,:password_confirmation)
     end
-  
+
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)

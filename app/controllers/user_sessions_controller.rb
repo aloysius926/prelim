@@ -2,7 +2,7 @@ class UserSessionsController < ApplicationController
   skip_before_action :signed_in_user, only: [:new, :create]
   def new
   end
-  
+
   def create
     user = User.find_by(email: params[:user_session][:email].downcase)
     if user && user.authenticate(params[:user_session][:password])
@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
       render 'new'
     end
   end
-  
+
   def destroy
     sign_out_user
     redirect_to :root

@@ -1,7 +1,7 @@
 class PasswordResetsController < ApplicationController
   skip_before_action :signed_in_user
   def new
-    
+
   end
   def create
     user = User.find_by_email(params[:email])
@@ -26,4 +26,3 @@ private
       params.require(:user).permit(:password,:password_confirmation)
     end
 end
-
