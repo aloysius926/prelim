@@ -1,14 +1,14 @@
-
 .container-fluid.row-fluid
   .span4
     = render 'finished_questions/form'
     = link_to 'Edit Question', edit_question_path(@question)
+    = link_to("Download PDF",question.pdf.url)
   .span4
     %h5 Dates Asked
     - @question.sittings.each do | sitting |
       = sitting.print_sitting
       ,
-    = link_to 'Add Date', new_question_sitting_path(@question)    
+    = link_to 'Add Date', new_question_sitting_path(@question)
   .span4
     %h5 Tags
     - @question.tags.each do | tag |
@@ -20,15 +20,15 @@
   %h3.text-center Question Ratings
 = render 'question_ratings/table'
 .container-fluid.row-fluid.span12
-  = render 'question_ratings/form' 
+  = render 'question_ratings/form'
 
 .container-fluid.row-fluid.span12
   %h3.text-center Answers
 
-%table.table.table-bordered 
+%table.table.table-bordered
   %thead
     %tr
-      %th Overall 
+      %th Overall
       %th Clarity
       %th Detail
       %th Correctness
@@ -49,4 +49,3 @@
   = f.label  :file
   = f.file_field  :pdf
   = f.submit "Add Answer"
-  

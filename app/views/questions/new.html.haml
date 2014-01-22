@@ -19,16 +19,16 @@
     = f.number_field  :mini
     %p
     = fields_for(@question_sitting) do |e|
-     
+
       = e.label :year
       = e.select :year, (1990...2014)
-  
+
       = e.label  :term
       = e.collection_select :term_id, Term.all, :id, :term, include_blank: true
-  
+
       = e.label  :number
-      = e.text_field  :number 
-  
+      = e.text_field  :number
+
     = f.label  :file
     = f.file_field  :pdf
 

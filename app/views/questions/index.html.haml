@@ -1,16 +1,16 @@
 .center-block
   %h1 All Questions
-  
+
   = search_form_for( @search, url: search_questions_path, method: :post) do |f|
     = f.condition_fields do |c|
       = render 'condition_fields', f: c
     %p= link_to_add_fields "Add Conditions", f, :condition
-    .field 
+    .field
       Sort:
       = f.sort_fields do |s|
         = s.sort_select associations: [:sittings, :tags]
     = f.submit "Search"
-  
+
   %table.table.table-condensed.table-responsive#questions
     %thead
       %tr
@@ -26,13 +26,13 @@
           %span{title: "Average Difficulty Rating"} Diff
         %th
           %span{title: "Average Uniqueness Rating"} Uniq
-        %th 
+        %th
           %span{title: "Number of Answers Uploaded"} # Answers
         %th
           %span{title: "Finished?"} Fin?
         %th Tags
         %th Q. PDF
-        %th More 
+        %th More
     %tbody
       - @questions.each do |question|
         %tr

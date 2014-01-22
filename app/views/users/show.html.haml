@@ -1,6 +1,6 @@
 %table.table.table-bordered.table-condensed
   %thead
-    %tr 
+    %tr
       %th
       %th{colspan: "26"} Micro
     %tr
@@ -20,13 +20,13 @@
         %th 1-1
         %th 1-2
         %th 1-3
-        %th 2-1 
+        %th 2-1
         %th 2-2
         %th 2-3
-        %th 3-1 
+        %th 3-1
         %th 3-2
         %th 3-3
-        %th 4-1 
+        %th 4-1
         %th 4-2
         %th 4-3
         %th 4-4
@@ -38,15 +38,15 @@
           - (1..4).each do |first|
             - (1..3).each do |second|
               %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,1)
-          %td= link_to_question(yr,term,"4-4",current_user.id,1) 
+          %td= link_to_question(yr,term,"4-4",current_user.id,1)
   %tfoot
     %td{colspan: "27"} A=Beth Allen, C=Kim-Sau, O=Obara, R=Aldo Rustichini, W=Jan Werner
-              
-              
-              
+
+
+
 %table.table.table-bordered
   %thead
-    %tr 
+    %tr
       %th
       %th{colspan: "16"} Macro
     %tr
@@ -65,11 +65,11 @@
       - 2.times do
         %th 1-1
         %th 1-2
-        %th 2-1 
+        %th 2-1
         %th 2-2
-        %th 3-1 
+        %th 3-1
         %th 3-2
-        %th 4-1 
+        %th 4-1
         %th 4-2
   %tbody
     - 2013.downto(2009) do |yr|
@@ -78,13 +78,13 @@
         - ["Fall", "Spring"].each do |term|
           - (1..4).each do |first|
             - (1..2).each do |second|
-              %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,2) 
+              %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,2)
   %tfoot
     %td{colspan: "17"} C=V.V. Chari, J=Larry Jones, K=Tim Kehoe, P=Fabrizio Perri, R=Victor Rios-Rull
-              
+
 %table.table.table-bordered
   %thead
-    %tr 
+    %tr
       %th
       %th{colspan: "20"} Before 2008 Macro Prelims had Short Questions and Long Questions
     %tr
@@ -96,12 +96,12 @@
       - 2.times do
         %th 1-1
         %th 1-2
-        %th 1-3 
+        %th 1-3
         %th 1-4
-        %th 1-5 
+        %th 1-5
         %th 2-1
         %th 2-2
-        %th 2-3 
+        %th 2-3
         %th 2-4
         %th 2-5
   %tbody
@@ -111,4 +111,4 @@
         - ["Fall", "Spring"].each do |term|
           - (1..2).each do |first|
             - (1..5).each do |second|
-              %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,2)                
+              %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,2)
