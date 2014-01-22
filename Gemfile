@@ -86,7 +86,7 @@ group :development, :test do
   # Fetch first configured adapter
   (db["development"] || db["test"])["adapter"]
   else
-    "sqlite3"
+    "pg"
   end
   gem *db_gems[adapter]
   ### Taken from stack overflow 4151495 should gemfile.lock be included in gitignore
