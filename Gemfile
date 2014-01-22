@@ -90,8 +90,9 @@ group :development, :test do
   end
   gem *db_gems[adapter]
   ### Taken from stack overflow 4151495 should gemfile.lock be included in gitignore
-  gem 'rack-mini-profiler'
+
   rescue
   gem "pg"
 end
 end
+gem 'rack-mini-profiler'
