@@ -13,7 +13,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'factory_girl_rails'
   gem "rails_best_practices"
-  
+
   gem 'guard-rspec'
   gem 'guard-livereload'
 end
@@ -28,7 +28,7 @@ group :test do
   gem 'faker'
   gem 'capybara'
   gem 'launchy'
-  
+
 end
 
 group :production do
@@ -42,7 +42,7 @@ group :production do
 end
 
 group :assets do
-  
+
   gem 'therubyracer' #, "~> 0.9.9"
   gem 'sass-rails', "~> 4.0.0"
   gem 'coffee-rails', "~> 4.0.0"
@@ -76,10 +76,11 @@ gem 'bcrypt-ruby','3.1.2'
 
 
 group :development, :test do
+  begin
   require 'yaml'
   # Loads the database adapter gem based on config/database.yml
   db_gems = { "postgresql" => ["pg"],
-              "sqlite3" => ["sqlite3"]}
+	      "sqlite3" => ["sqlite3"]}
   adapter = if File.exists?(db_config = File.join(File.dirname(__FILE__),"config","database.yml"))
   db = YAML.load_file(db_config)
   # Fetch first configured adapter
@@ -90,5 +91,7 @@ group :development, :test do
   gem *db_gems[adapter]
   ### Taken from stack overflow 4151495 should gemfile.lock be included in gitignore
   gem 'rack-mini-profiler'
-
+  rescue
+  gem "pg"
+end
 end
