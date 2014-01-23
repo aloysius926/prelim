@@ -5,9 +5,11 @@
     %p
     = link_to("Download PDF",@question.pdf.url)
   .span4
-    %h5 Subject-
+    %h5
+      Subject-
       = @question.subject.name
-    %h5 Professor-
+    %h5
+      Professor-
       = @question.professor.name
     %h5 Dates Asked
     - @question.sittings.each do | sitting |

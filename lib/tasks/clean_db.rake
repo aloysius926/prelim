@@ -40,10 +40,13 @@ namespace :cleanDatabase do
       puts a.question.subject.name + " " + a.pdf_file_name unless a.pdf_file_name.include? a.question.subject.name.downcase
     end
   end
-  task :checkQuestionSubject => environment do
+  task :checkQuestionSubject => :environment do
     @questions = Question.joins(:subject)
-    @questions.each do |a|
-      puts q.subject.name + " " + q.pdf_file_name unless q.pdf_file_name.include? q.subject.name.downcase
+    @questions.each do |q|
+      unless q.pdf_file_name.include? q.subject.name.downcase
+        q.subject = Subject.where("name=?",q.pdf_file_name[0,5].capitalize ).first if Subject.where("name=?",q.pdf_file_name[0,5].capitalize ).size == 1
+        q.save!
       end
-      end
-      end
+    end
+  end
+end
