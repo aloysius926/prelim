@@ -1,3 +1,4 @@
+## Association to the Question Table
 class Question < ActiveRecord::Base
   belongs_to :subject
   belongs_to :source
@@ -7,33 +8,35 @@ class Question < ActiveRecord::Base
   has_many :question_ratings, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :finished_questions, dependent: :destroy
-  has_many :tags, :through => :questiontags
-  has_many :terms, :through => :sittings
+  has_many :tags, through: :questiontags
+  has_many :terms, through: :sittings
   has_many :questiontags, dependent: :destroy
   accepts_nested_attributes_for :sittings
   has_attached_file :pdf
   after_create :update_question_ratings
-  
+
   def update_question_ratings
-    @ratings = QuestionRating.where(question_id: self.id)
+    @ratings = QuestionRating.where(question_id: id)
     self.overall = @ratings.average(:overall)
     self.difficulty = @ratings.average(:difficulty)
     self.uniqueness = @ratings.average(:uniqueness)
     self.save!
   end
-  
+
   def total_answers
-    self.answers.size
+    answers.size
   end
-  
+
   def subj
-    self.subject.name
+    subject.name
   end
+
   def prof
-    self.professor.name
+    professor.name
   end
+
   def last_date
-    @sittings =self.sittings.sort_by {|u| u.year}
+    @sittings = sittings.sort_by { |u| u.year }
     @sitting = @sittings.last
     @sitting.sort_sitting
   end
