@@ -2,7 +2,7 @@
   .span4
     = render 'finished_questions/form'
     = link_to 'Edit Question', edit_question_path(@question)
-    = link_to("Download PDF",question.pdf.url)
+    = link_to("Download PDF",@question.pdf.url)
   .span4
     %h5 Dates Asked
     - @question.sittings.each do | sitting |
