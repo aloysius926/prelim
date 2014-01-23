@@ -6,9 +6,9 @@
     = link_to("Download PDF",@question.pdf.url)
   .span4
     %h5 Subject-
-    = @question.subject.name
+      = @question.subject.name
     %h5 Professor-
-    = @question.professor.name
+      = @question.professor.name
     %h5 Dates Asked
     - @question.sittings.each do | sitting |
       = sitting.print_sitting

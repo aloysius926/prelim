@@ -1,8 +1,8 @@
 require 'rake'
 
 namespace :cleanDatabase do
-  task :fixAllen => :environment do 
-    @questions = Question.joins(:subject, :professor).where("subjects.name = 'Macro' AND professors.name = 'Allen'") 
+  task :fixAllen => :environment do
+    @questions = Question.joins(:subject, :professor).where("subjects.name = 'Macro' AND professors.name = 'Allen'")
     @questions.each do |q|
       ### 17 is "UNKNOWN"
       quest = Question.find(q.id)
@@ -10,22 +10,22 @@ namespace :cleanDatabase do
       quest.save!
     end
   end
-  
+
   task :uploadProfessors do
   end
-  
+
   task :findDuplicateFiles => :environment do
-    while findDups 
+    while findDups
     end
-   
+
   end
-  
+
   def findDups
     @answers = Answer.all
     @answers.each do |a|
-      @answers.each do |b|  
+      @answers.each do |b|
         if !(a.id==b.id) && (a.identical? b )
-	  puts a.id.to_s + a.pdf_file_name + " " + b.id.to_s + b.pdf_file_name 
+	  puts a.id.to_s + a.pdf_file_name + " " + b.id.to_s + b.pdf_file_name
 	  puts Answer.find(b.id).destroy if (a.identical? b )
 	  return true
         end
@@ -33,13 +33,17 @@ namespace :cleanDatabase do
     end
     return false
   end
-  
-  task :checkSubject => :environment do 
+
+  task :checkAnswerSubject => :environment do
     @answers = Answer.joins(:question)
     @answers.each do |a|
       puts a.question.subject.name + " " + a.pdf_file_name unless a.pdf_file_name.include? a.question.subject.name.downcase
     end
   end
-  
-end
-      
+  task :checkQuestionSubject => environment do
+    @questions = Question.joins(:subject)
+    @questions.each do |a|
+      puts q.subject.name + " " + q.pdf_file_name unless q.pdf_file_name.include? q.subject.name.downcase
+      end
+      end
+      end
