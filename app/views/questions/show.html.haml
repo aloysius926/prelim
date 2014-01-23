@@ -2,8 +2,13 @@
   .span4
     = render 'finished_questions/form'
     = link_to 'Edit Question', edit_question_path(@question)
+    %p
     = link_to("Download PDF",@question.pdf.url)
   .span4
+    %h5 Subject-
+    = @question.subject.name
+    %h5 Professor-
+    = @question.professor.name
     %h5 Dates Asked
     - @question.sittings.each do | sitting |
       = sitting.print_sitting
