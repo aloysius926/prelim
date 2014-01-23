@@ -44,8 +44,9 @@ namespace :cleanDatabase do
     @questions = Question.joins(:subject)
     @questions.each do |q|
       unless q.pdf_file_name.include? q.subject.name.downcase
-        q.subject = Subject.where("name=?",q.pdf_file_name[0,5].capitalize ).first if Subject.where("name=?",q.pdf_file_name[0,5].capitalize ).size == 1
-        q.save!
+        @quest = q.id
+        @quest.subject = Subject.where("name=?",q.pdf_file_name[0,5].capitalize ).first if Subject.where("name=?",q.pdf_file_name[0,5].capitalize ).size == 1
+        @quest.save!
       end
     end
   end
