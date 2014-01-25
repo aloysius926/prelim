@@ -10,7 +10,7 @@
       = f.sort_fields do |s|
         = s.sort_select associations: [:sittings, :tags]
     = f.submit "Search"
-
+  = paginate @questions, :method => :post
   %table.table.table-condensed.table-responsive#questions
     %thead
       %tr

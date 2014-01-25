@@ -1,4 +1,3 @@
-
 source 'http://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '4.0.1'
@@ -21,6 +20,8 @@ end
 group :development do
   gem 'rails_layout'
   gem 'quiet_assets'
+  gem 'bullet'
+
 end
 
 group :test do
@@ -73,7 +74,11 @@ gem 'haml'
 ## Hashes passwords in a secure way
 gem 'bcrypt-ruby','3.1.2'
 
+gem 'actionpack-action_caching'
+gem 'actionpack-page_caching'
+gem 'rails-observers'
 
+gem 'kaminari'
 
 group :development, :test do
   begin

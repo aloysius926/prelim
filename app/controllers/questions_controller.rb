@@ -1,8 +1,8 @@
 class QuestionsController < ApplicationController
   helper_method :sort_column, :sort_direction
   def index
-    @search = Question.includes(:sittings, :subject, :tags, :source, :professor).search(params[:q])
-    @questions = @search.result()
+    @search = Question.includes(:sittings, :subject, :tags, :source, :professor, :terms).search(params[:q])
+    @questions = @search.result.page(params[:page]).per(25)
     @search.build_condition if @search.conditions.empty?
     @search.build_sort if @search.sorts.empty?
     @current_user = current_user
