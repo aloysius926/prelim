@@ -40,6 +40,7 @@ class UsersController < ApplicationController
     @finished = FinishedQuestion.where('user_id = :user AND finished = TRUE', user: current_user.id)
                                 .pluck(:question_id)
     @sittings = Sitting.table_sittings
+    @table = params[:table] || "macro"
   end
 
   private
