@@ -2,6 +2,8 @@
 class UsersController < ApplicationController
   skip_before_action :signed_in_user, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update, :show]
+  #caches_action :index, :show
+  #cache_sweeper :user_sweeper
 
   def create
     @user = User.new(user_params)
@@ -35,7 +37,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @subjects = Subject.all
-    @finished = FinishedQuestion.where('user_id = :user', user: current_user.id)
+    @finished = FinishedQuestion.where('user_id = :user AND finished = TRUE', user: current_user.id)
                                 .pluck(:question_id)
     @sittings = Sitting.table_sittings
   end
