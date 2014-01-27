@@ -2,7 +2,7 @@
 class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
-    @answer = @question.answers.new(params[:answer].permit(:pdf))
+    @answer = @question.answers.new(params[:answer].permit(:pdf, :typed))
     @answer.user_id = current_user.id
     if @answer.save
       flash[:notice] = 'Your answer has been uploaded.  Thanks a lot'
