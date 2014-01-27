@@ -10,6 +10,7 @@ class AnswersController < ApplicationController
     else
       flash[:error] = 'Something went wrong and your answer was not added.'
       redirect_to question_path(@question)
+    end
   end
 
   def show
