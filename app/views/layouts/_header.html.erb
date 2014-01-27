@@ -5,6 +5,7 @@
           <ul class="nav pull-right">
             <% if signed_in? %>
               <li><%= link_to "Home", questions_path %></li>
+              <li><%= link_to "Summary", summary_path %></li>
               <li><%= link_to "Macro Table", user_path(current_user, :table => "macro") %></li>
               <li><%= link_to "Micro Table", user_path(current_user, :table => "micro") %></li>
               <li><%= link_to "Settings", edit_user_path(current_user) %></li>

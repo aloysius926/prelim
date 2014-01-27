@@ -37,10 +37,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @subjects = Subject.all
-    @finished = FinishedQuestion.where('user_id = :user AND finished = TRUE', user: current_user.id)
-                                .pluck(:question_id)
+    @finished = FinishedQuestion.user_finished(current_user.id)
     @sittings = Sitting.table_sittings
-    @table = params[:table] || "macro"
+    @table = params[:table] || 'macro'
   end
 
   private

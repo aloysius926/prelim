@@ -1,13 +1,13 @@
 Prelims::Application.routes.draw do
-  get "password_resets/new"
+  get 'password_resets/new'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root :to => "questions#index"
-  resources :questions do 
+  root to: 'questions#index'
+  resources :questions do
     resources :sittings
     resources :question_ratings
-    collection { post :search, to: 'questions#index'}
-    
+    collection { post :search, to: 'questions#index' }
+
     resources :answers do
       resources :answer_ratings
     end
@@ -25,5 +25,5 @@ Prelims::Application.routes.draw do
   match '/signin',  to: 'user_sessions#new',         via: 'get'
   match '/signout', to: 'user_sessions#destroy',     via: 'delete'
   match '/help' => 'static#help', via: 'get'
-  #get 'questions/:question_id/answers/:id/answer_ratings/new', :to => 'answer_ratings#new', :as => :answer_id 
+  match '/summary' => 'static#summary', via: 'get'
 end

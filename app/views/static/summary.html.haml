@@ -1,0 +1,12 @@
+%table.table.table-condensed.table-responsive#summary
+  %thead
+    %tr
+      %th Professor
+      %th Finished
+      %th Total
+    %tbody
+      - @professors.each do |p|
+        %tr
+          %td= p.name
+          %td= FinishedQuestion.where(:question_id =>  p.questions.pluck(:id), :user_id => current_user.id ).size
+          %td= p.questions.size
