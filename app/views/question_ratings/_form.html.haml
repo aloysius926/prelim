@@ -2,16 +2,16 @@
   .row
     = f.label :overall
     =  f.collection_select :overall, RatingOption.all, :value, :label, include_blank: true
-    
+
     = f.label :uniqueness
     =  f.collection_select :uniqueness, RatingOption.all, :value, :label, include_blank: true
-    
+
     = f.label :difficulty
     =  f.collection_select :difficulty, RatingOption.all, :value, :label, include_blank: true
-  .row  
+  .row
     = f.label :comment
     = f.text_field :comment
-    
+
     = f.hidden_field :question_id, :value => params[:id]
-      
+
     = f.submit
