@@ -5,8 +5,8 @@
       %th{colspan: "26"} Micro
     %tr
       %th
-      %th{colspan: "13"} Fall
       %th{colspan: "13"} Spring
+      %th{colspan: "13"} Fall
     %tr
       %th
       - 2.times do
@@ -34,10 +34,10 @@
     - 2013.downto(2000) do |yr|
       %tr
         %td= yr
-        - ["Fall", "Spring"].each do |term|
+        - ["Spring","Fall"].each do |term|
           - (1..4).each do |first|
             - (1..3).each do |second|
-              %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,1)
-          %td= link_to_question(yr,term,"4-4",current_user.id,1)
+              %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,Subject.where("name = ?",@table.capitalize).first.id)
+          %td= link_to_question(yr,term,"4-4",current_user.id,Subject.where("name = ?",@table.capitalize).first.id)
   %tfoot
     %td{colspan: "27"} A=Beth Allen, C=Kim-Sau Chung, O=Ichiro Obara, U=UNKNOWN, R=Aldo Rustichini, W=Jan Werner

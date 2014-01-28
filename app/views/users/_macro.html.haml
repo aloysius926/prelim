@@ -5,8 +5,8 @@
       %th{colspan: "16"} Macro
     %tr
       %thead
-      %th{colspan: "8"} Fall
       %th{colspan: "8"} Spring
+      %th{colspan: "8"} Fall
     %tr
       %th
       - 2.times do
@@ -29,10 +29,10 @@
     - 2013.downto(2009) do |yr|
       %tr
         %td= yr
-        - ["Fall", "Spring"].each do |term|
+        - ["Spring","Fall"].each do |term|
           - (1..4).each do |first|
             - (1..2).each do |second|
-              %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,2)
+              %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,Subject.where("name = 'Macro'").first.id)
   %tfoot
     %td{colspan: "17"} C=V.V. Chari, J=Larry Jones, K=Tim Kehoe, U=UNKNOWN, P=Fabrizio Perri, R=Victor Rios-Rull
 
@@ -43,8 +43,8 @@
       %th{colspan: "20"} Before 2008 Macro Prelims had Short Questions and Long Questions
     %tr
       %th
-      %th{colspan: "10"} Fall
       %th{colspan: "10"} Spring
+      %th{colspan: "10"} Fall
     %tr
       %th Year
       - 2.times do
@@ -62,7 +62,7 @@
     - 2008.downto(2000) do |yr|
       %tr
         %td= yr
-        - ["Fall", "Spring"].each do |term|
+        - ["Spring","Fall"].each do |term|
           - (1..2).each do |first|
             - (1..5).each do |second|
-              %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,2)
+              %td= link_to_question(yr,term,"#{first}-#{second}",current_user.id,Subject.where("name = 'Macro'").first.id)
