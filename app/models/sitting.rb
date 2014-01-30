@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: sittings
+#
+#  id          :integer          not null, primary key
+#  term_id     :integer
+#  year        :integer
+#  number      :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  question_id :integer
+#
+
 ### Sitting Model
 class Sitting < ActiveRecord::Base
   belongs_to :term

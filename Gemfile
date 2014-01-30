@@ -79,6 +79,7 @@ gem 'actionpack-page_caching'
 gem 'rails-observers'
 
 gem 'kaminari'
+gem 'annotate'
 
 group :development, :test do
   begin

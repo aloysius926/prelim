@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: tags
+#
+#  id         :integer          not null, primary key
+#  tag        :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe Tag do
