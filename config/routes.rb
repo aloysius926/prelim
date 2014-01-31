@@ -26,4 +26,5 @@ Prelims::Application.routes.draw do
   match '/signout', to: 'user_sessions#destroy',     via: 'delete'
   match '/help' => 'static#help', via: 'get'
   match '/summary' => 'static#summary', via: 'get'
+  match '/teacher' => 'static#teacher', via: 'get'
 end

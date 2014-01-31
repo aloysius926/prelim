@@ -4,8 +4,10 @@ class StaticController < ApplicationController
   end
 
   def summary
-  	@professors = Professor.order(:name)
-  	@finishedquestions = FinishedQuestion.user_finished(current_user.id)
+    @professors = Professor.order(:name)
+    @finishedquestions = FinishedQuestion.user_finished(current_user.id)
   end
 
+  def teacher
+  end
 end
