@@ -1,6 +1,6 @@
 %h1 Edit Question
 
-= form_for :question, url: questions_path, :html => { :multipart => true } do |f|
+= form_for @question,  :url => {action: :update}, :html => { :multipart => true } do |f|
   = f.label :subject
   = f.collection_select :subject_id, Subject.all, :id, :name, include_blank: true
   %p
