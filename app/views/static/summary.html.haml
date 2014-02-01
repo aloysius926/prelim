@@ -10,3 +10,30 @@
           %td= p.name
           %td= FinishedQuestion.where(:question_id =>  p.questions.pluck(:id), :user_id => current_user.id ).size
           %td= p.questions.size
+%table.table
+  %thead
+    %tr
+      %th Subject
+      %th Completed
+      %th Total Min
+      %th Total Max
+      %th Days to Exam
+      %th Number per day
+  %tbody
+    %tr
+      %td Micro
+      %td= @micro_complete
+      %td= @micro_total_min
+      %td= @micro_total_max
+      %td= @micro_to_exam
+      %td= number_to_human(@micro_per_day, precision: 2)
+    %tr
+      %td Macro
+      %td= @macro_complete
+      %td= @macro_total_min
+      %td= @macro_total_max
+      %td= @macro_to_exam
+      %td= number_to_human(@macro_per_day, precision: 2)
+  %tfoot
+    %tr
+      %td{colspan: "6"} Questions per day are calculated using Minimum Days which does not include "UNKNOWN" while Max does
