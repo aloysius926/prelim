@@ -12,7 +12,7 @@ class StaticController < ApplicationController
     	                                                                 finished = TRUE").size
     @micro_total_min = @micro_questions.size
     @micro_total_max = @micro_total_min + Question.joins(:subject,:professor).where("subjects.name = 'Micro' and professors.name = 'UNKNOWN'").size
-    @micro_to_exam = (Date.new(2014, 5, 23) - Date.today).to_i
+    @micro_to_exam = (Date.new(2014, 5, 21) - Date.today).to_i
     @micro_per_day = @micro_total_min.to_i * 1.0 / @micro_to_exam.to_i
 
     # I really need to learn metaprogramming in rails
@@ -21,7 +21,7 @@ class StaticController < ApplicationController
     	                                                                 finished = TRUE").size
     @macro_total_min = @macro_questions.size
     @macro_total_max = @macro_total_min + Question.joins(:subject,:professor).where("subjects.name = 'Macro' and professors.name = 'UNKNOWN'").size
-    @macro_to_exam = (Date.new(2014, 5, 30) - Date.today).to_i
+    @macro_to_exam = (Date.new(2014, 5, 28) - Date.today).to_i
     @macro_per_day = @macro_total_min.to_i * 1.0 / @macro_to_exam.to_i
 
 
