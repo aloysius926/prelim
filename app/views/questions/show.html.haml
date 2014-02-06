@@ -46,6 +46,7 @@
       %th User Name
       %th Typed?
       %th Review Answer
+      %th
   %tbody
     - @question.answers.each do |answer|
       %tr
@@ -60,6 +61,10 @@
         - else
           %td N
         %td= link_to 'More info', question_answer_path(:id => answer.id, :question_id => answer.question.id)
+        - if answer.user.id == current_user.id
+          %td= edit_answer_path(answer)
+        -else
+          %td
 = form_for([@question, @question.answers.build], html: {class: "form-inline"}) do |f|
   = f.label  :file
   = f.file_field  :pdf

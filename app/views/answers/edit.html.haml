@@ -1,0 +1,7 @@
+= form_for(@answer, html: {class: "form-inline"}) do |f|
+  = f.label  :file
+  = f.file_field  :pdf
+
+  = f.label :typed
+  = f.check_box :typed
+  = f.submit "Edit Answer"
