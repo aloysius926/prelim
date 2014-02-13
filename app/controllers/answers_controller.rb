@@ -35,5 +35,5 @@ end
 
 private
 def answer_params
-  params.require(:answer).premit(:pdf, :typed)
+  params.require(:answer).permit(:pdf, :typed)
 end
