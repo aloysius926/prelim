@@ -1,7 +1,17 @@
 # Let users see and add answers
 class AnswersController < ApplicationController
-  def create
+  before_filter :find_answer, only: [:show, :edit, :update]
+  before_filter :find_question, only: [:create, :update]
+
+  def find_answer
+    @answer = Answer.find(params[:id])
+  end
+
+  def find_question
     @question = Question.find(params[:question_id])
+  end
+
+  def create
     @answer = @question.answers.new(answer_params)
     @answer.user_id = current_user.id
     if @answer.save
@@ -14,16 +24,12 @@ class AnswersController < ApplicationController
   end
 
   def show
-    @answer = Answer.find(params[:id])
   end
 
   def edit
-    @answer = Answer.find(params[:id])
   end
 
   def update
-    @answer = Answer.find(params[:id])
-    @question = Question.find(answer.question.id)
     if @answer.update_attributes(answer_params)
       flash[:success] = "Answer Updated"
       redirect_to question_path(@question)
@@ -34,6 +40,6 @@ class AnswersController < ApplicationController
 end
 
 private
-def answer_params
-  params.require(:answer).premit(:pdf, :typed)
-end
+  def answer_params
+    params.require(:answer).premit(:pdf, :typed)
+  end
