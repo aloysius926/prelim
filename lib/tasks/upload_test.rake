@@ -70,20 +70,36 @@ namespace :defaultAnswer do
         ##### Fix Professor if upload tag is not nil
         @question =  Question.joins(:sittings, :terms, :subject).where("terms.term = '#{row_hash["term"]}' AND subjects.name = '#{row_hash["subject"]}' AND sittings.year = '#{row_hash["year"]}' AND sittings.number = '#{row_hash["number"]}'").distinct
         if @question.size == 1
-          @quest = Question.find(@q.id)
+          @q = @question.first
+	  @quest = Question.find(@q.id)
           puts @q
           ## I'm also updating professors because sometimes the answers have best guesses at professors
-          if (@q.professor.name.nil? || @q.professor.name == "UNKNOWN") && !row_hash["professor"].nil?
+          if (@q.professor.nil? || @q.professor.name == "UNKNOWN") && !row_hash["professor"].nil?
             # @q is read only so I have to grab a copy I can write to
             @quest.professor = Professor.where("name = ?",row_hash["professor"]).first
             @quest.save!
           else
             ## Print debugging info if the professor in the db doesn't match the professor from the spreadsheet
-            puts @q.professor.name + " " + row_hash["professor"] + " ID: " + @q.id.to_s unless @q.professor.name == row_hash["professor"]
-            puts row.to_hash.stringify_keys unless @q.professor.name == row_hash["professor"]
+            begin
+	      puts @q.professor.name + " " + row_hash["professor"] + " ID: " + @q.id.to_s unless @q.professor.name == row_hash["professor"]
+              puts row.to_hash.stringify_keys unless @q.professor.name == row_hash["professor"]
+	    rescue
+	    end
           end
         end
       end
+    end
+  end
+  task :cutPDFS, [:filename] => :environment do |task,args|
+    CSV.foreach("#{args.filename}", headers: true) do |row|
+      row_hash = row.to_hash.stringify_keys
+      system "pdfcut #{row_hash["file"]} #{row_hash["name"]} #{row_hash["stub"]}#{row_hash["subject"].downcase}_#{row_hash["year"]}#{row_hash["term"][0]}Q #{row_hash["number"]} #{row_hash["first"]} #{row_hash["last"]} >> rake.log 2>> rake.log"
+    end
+  end
+  task :cutQuest, [:filename] => :environment do |task,args|
+    CSV.foreach("#{args.filename}", headers: true) do |row|
+      row_hash = row.to_hash.stringify_keys
+      system "pdfcut_q #{row_hash["file"]} #{row_hash["stub"]}#{row_hash["subject"].downcase}_#{row_hash["year"]}#{row_hash["term"][0]}Q #{row_hash["number"]} #{row_hash["first"]} #{row_hash["last"]} >> rake.log 2>> rake.log"
     end
   end
 end
