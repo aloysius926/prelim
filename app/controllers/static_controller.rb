@@ -6,7 +6,7 @@ class StaticController < ApplicationController
   def summary
     @professors = Professor.order(:name)
     @finishedquestions = FinishedQuestion.user_finished(current_user.id)
-    professors = Professor.where("name in ('Allen','Werner','Rustichini','Kehoe, T.','Jones','Chari','Rios-Rull')").pluck(:id)
+    professors = Professor.where("name in ('Allen','Werner','Rustichini','Kehoe, T','Jones','Chari','Rios-Rull')").pluck(:id)
     @micro_questions = Question.joins(:subject).where(:professor_id => professors).where("subjects.name = 'Micro'")
     @micro_complete = @micro_questions.joins(:finished_questions).where("finished_questions.user_id = #{current_user.id} and
     	                                                                 finished = TRUE").size
